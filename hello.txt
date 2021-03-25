@@ -1,4 +1,0 @@
-added line1
-changed line2
-added line3
-added line4
