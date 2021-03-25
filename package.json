@@ -1,21 +1,15 @@
 {
-  "name": "nodejs",
-  "description": "",
+  "name": "nodejsprojectgroup5",
   "version": "1.0.0",
+  "description": "Group 5 Project Node JS Edureka",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node start.js",
+    "dev":"nodemon start.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tivon-mohammed/nodejsproject.git"
-  },
-  "author": "",
+  "author": "Group 5",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tivon-mohammed/nodejsproject/issues"
-  },
-  "homepage": "https://github.com/tivon-mohammed/nodejsproject#readme",
   "dependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
