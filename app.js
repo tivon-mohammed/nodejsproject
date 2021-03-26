@@ -1,5 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import authRoutes from './routes/authRoutes'
+import adminRoutes from './routes/adminRoutes'
 
 //constants declared
 const app=express()
@@ -31,6 +33,17 @@ app.get('/contactus', (request, response) => {
 app.get('/aboutus', (request, response) => {
     response.render('aboutus')
 })
+app.get('/login', (request, response) => {
+    response.render('login', {error: request.query.valid?request.query.valid:'',
+                                msg: request.query.msg?request.query.msg:''})
+
+})
+app.get('/register', (request, response) => {
+    response.render('register', {message: null, error: null})
+})
+
+app.use('/auth', authRoutes)
+app.use('/admin', adminRoutes)
 
 //start express app
 app.listen(port,()=>{
