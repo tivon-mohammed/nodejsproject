@@ -60,7 +60,7 @@ router.route('/login').post(json(), urlencoded({extended:false}),cors(corsOption
             if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
             let localStorage = new LocalStorage('./Scratch');
             let token = jwt.sign({id: userData.id}, config.secret, {expiresIn:86400})
-            console.log("toekn, auth" + token)
+            //console.log("toekn, auth" + token)
             localStorage.setItem('authToken', token)   
             res.redirect('/admin/profile');
         }
@@ -69,7 +69,6 @@ router.route('/login').post(json(), urlencoded({extended:false}),cors(corsOption
 
 
 router.route('/verify').post(json(), urlencoded({extended:false}),cors(corsOptions), (request, response) => { 
-    console.log("here")
     let token = request.headers['x-access-toekn'];
     if(!token){
         return response.status(401).send({auth: false, message: 'no token provided'})

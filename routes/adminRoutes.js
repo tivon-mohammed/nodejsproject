@@ -22,7 +22,7 @@ router.get('/', function (req, res) {
 router.get('/profile', function (req, res) {
     let localStorage = new LocalStorage('./Scratch')
     let token = localStorage.getItem('authToken')
-    console.log("token>>>",token)
+    //console.log("token>>>",token)
     if (!token) {
         res.redirect('/login')
     }
@@ -38,6 +38,7 @@ router.get('/profile', function (req, res) {
             if (!user) {
                 res.redirect('/login')
             }
+            localStorage.setItem('currentuser', user.email);
             res.render('admin.ejs',{user})
         });
     });
@@ -49,6 +50,7 @@ router.get('/register',  (req, res) => {
 
 router.get('/logout', (req,res) => {
     localStorage.removeItem('authtoken');
+    localStorage.removeItem('currentuser')
     res.redirect('/');
 })
 

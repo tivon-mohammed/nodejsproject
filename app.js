@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import newsRoutes from './routes/newsRoutes'
 import authRoutes from './routes/authRoutes'
 import adminRoutes from './routes/adminRoutes'
 
@@ -42,8 +43,9 @@ app.get('/register', (request, response) => {
     response.render('register', {message: null, error: null})
 })
 
-app.use('/auth', authRoutes)
-app.use('/admin', adminRoutes)
+app.use('/auth', authRoutes);
+app.use('/admin', adminRoutes);
+app.use('/news', newsRoutes);
 
 //start express app
 app.listen(port,()=>{
