@@ -3,8 +3,7 @@ import mongoose from 'mongoose'
 
 //constants declared
 const app=express()
-const port=6500
-
+const port=8008
 //mongoose connection 
 mongoose.connect('mongodb://127.0.0.1:27017/edureka',{useUnifiedTopology:true,useNewUrlParser:true})
 const connection=mongoose.connection;
