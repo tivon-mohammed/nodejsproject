@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="logo" style="margin-right: 15%;">
+                <i class="fa fa-comments" style="font-size: 30px;" aria-hidden="true"></i>
+                <h3>Community Chat</h3>
+            </div>
+            <p id="your-name" style="color: red;font-size: 12px;margin-top: 20px;"><input type="text" name="msg" id="nickText" placeholder="Name please..">*
+            <button id="nick" class="btn btn-success" style="cursor: pointer;margin-top: 5px;">Start Chat</button></p><br>
+                
+        </div>
+        
+        <h5>Active <i class="fa fa-users" aria-hidden="true"></i>  <b id="usersNo"></b></h5>
+<!-- ---------------------------------------------------- -->
+        <div class="chat-section">
+            <div class="main-wrapper">
+                <div class="chat-content">
+                    <div class="message">
+                        <textarea class="tArea" id="chat-area" placeholder=" Welcome to Group Discussion. Please give your name to join chat" readonly disabled></textarea>
+                    </div>
+
+                </div>
+ <!-- ------------------------------------------------------ -->
+                <div class="msg-text">
+                    <input type="text" name="msg" id="chatText"
+                    placeholder="Type Message Here...." autocomplete="off">
+                    <button id="chat" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"> Send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script> 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+<script>
+    var socket =io.connect()
+
+    socket.on('chat',(data)=>{
+        var msg = data.nick+"(From "+data.location+" "+data.time+")"+" :"+data.message
+        $('textarea').val($('textarea').val()+msg+'\n')
+        
+    })
+        
+    $(function(){
+        $('#nick').on('click',function(){ 
+        socket.emit('nick',$('#nickText').val())
+        //clear input after start chat
+        $('#nickText').val('')
+        }) 
+
+        $('#chat').on('click',function(){
+        
+            socket.emit('chat', {message:$('#chatText').val()})
+            
+            socket.on('userList',(users)=>{
+            document.getElementById('usersNo').innerHTML=users.length
+            //clear input after sending chat or emiting 
+            $('#chatText').val('')
+            })
+        })
+
+    })
+
+
+
+    //To scroll at the bottom for chat box
+    var textarea = document.getElementById('chat-area');
+    setInterval(function(){
+    textarea.scrollTop = textarea.scrollHeight;
+    });
+
+    //lets user send msg with enter
+    $('#chatText').keypress(function(e){
+        if(e.which == 13){
+            $('#chat').click();
+        }
+    })
+</script>
+
+</html>
