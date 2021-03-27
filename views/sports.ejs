@@ -3,21 +3,222 @@
 <head> 
 <%- include ('./partials/header') %> 
 </head> 
+<style>
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    outline: black;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    background-image: none;
+    }
+
+    .carousel-control-next-icon:after
+    {
+    content: '\203A';
+    font-size: 70px;
+    color: white;
+    }
+
+    .carousel-control-prev-icon:after {
+    content: '\2039';
+    font-size: 70px;
+    color: white;
+    }
+</style>
 <body> 
-    <div class="container">
-        <div class="row justify-content-center mt-3 mb-3">
-            <h1>sport</h1>
-        </div>
+    <div class="container mt-5">
         
-        <div class="jumbotron jumbotron-fluid" style="border-radius:20px">
-            <div class="container">
-                <h1 class="display-4">Sports</h1>
-                <p class="lead">Find the news of your favorite team.</p>
+            <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" style="width:100%; height:400px; background-color: grey; border-radius:15px 15px 0 0">
+                    <div class="carousel-item active">
+                        <div class="w-100 row" style="position:absolute;">
+                            <div class="col-6"></div>
+                            <div class="col-6 my-auto">
+                                <div class="mt-5" style="display:inline-block">
+                                    <h1 style="top: 20px; right: 20px; color:white; text-shadow: 1px 1px 2px black" class="my-auto"> 
+                                        "<%= news[0].title%>"
+                                    </h1><br>
+                                    <a href="/sports/<%= news[0]._id%>" style="text-decoration:none">
+                                        <button class="btn btn-block" style="box-shadow: 1px 1px 2px black; background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,123,198,1) 100%); color:white; font-weight:bold; border-radius:500px">
+                                            Read Article
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="d-block w-100" src="<%= news[0].image %>" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row w-100 pl-3" style="position:absolute;">
+                            <div class="col-3"></div>
+                            <div class="col-6 my-auto">
+                                <div class="mt-5" style="display:inline-block">
+                                    <h1 style="color:white; text-shadow: 1px 1px 2px black" class="my-auto"> 
+                                        "<%= news[1].title%>"
+                                    </h1><br>
+                                    <a href="/sports/<%= news[1]._id%>" style="text-decoration:none">
+                                        <button class="btn btn-block" style="box-shadow: 1px 1px 2px black; background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,123,198,1) 100%); color:white; font-weight:bold; border-radius:500px">
+                                            Read Article
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+                        <img class="d-block w-100" src="<%= news[1].image %>" alt="Third slide">
+                    </div>
+                    <div class="carousel-item" style="text-align:center">
+                        <div class="w-100 row" style="position:absolute;">
+                            <div class="col-6"></div>
+                            <div class="col-6 my-auto">
+                                <div class="mt-5" style="display:inline-block">
+                                    <h1 style="top: 20px; right: 20px; color:white; text-shadow: 1px 1px 2px black" class="my-auto"> 
+                                        "<%= news[2].title%>"
+                                    </h1><br>
+                                    <a href="/sports/<%= news[2]._id%>" style="text-decoration:none">
+                                        <button class="btn btn-block" style="box-shadow: 1px 1px 2px black; background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,123,198,1) 100%); color:white; font-weight:bold; border-radius:500px">
+                                            Read Article
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="d-block w-100" src="<%= news[2].image %>" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-        </div>
+        
     </div>
    
-    
+   <div class = "container">
+        <div class="card text-center mb-5" style="border-radius: 0 0 15px 15px; box-shadow: 0 1px 2px #ccc ; border:none;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="font-weight:bold; color:white; background: linear-gradient(90deg, rgba(115,0,124,1) 0%, rgba(2,0,36,1) 100%); border-radius: 0 0 0 0 "> 
+                    <h4 style="font-weight:bold">Game Results</h4> 
+                </li>
+            </ul>
+            <div class="card-body" style="height:400px; overflow-y:auto; overflow-x:hidden;">
+                <div class="my-3">
+                    <div class="card-columns">
+                        <% for(let e of events){ %>
+                            <div class="card " style="border-radius: 15px 15px 15px 15px; box-shadow: 0 1px 2px #ccc; border:none">
+                            <img class="card-img-top" style="border-radius: 15px 15px 0 0 " src="<%= e.strThumb %>" alt="Card image cap">
+                                <div class="card-body" style="border-radius: 0 0  15px 15px">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col-2 mx-auto" style="text-align:right; font-size: x-large">
+                                            <i class="fas fa-home mx-auto"></i>
+                                        </div>
+                                        <div class="col-4 my-auto" style="text-align:center; border-right: dashed 1px #ccc">
+                                            <h5 class="my-auto" style="color:#681899"><%= e.intHomeScore ? e.intHomeScore : "-"%></h5>
+                                        </div>
+                                        <div class="col-4 my-auto" style="text-align:center">
+                                            <h5 class="my-auto" style="color:#681899"><%= e.intAwayScore ? e.intAwayScore : "-"%></h5>
+                                        </div>
+                                        <div class="col-2 mx-auto" style="text-align:left; font-size: x-large">
+                                            <i class="far fa-futbol mx-auto"></i>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col">
+                                            <div class="row justify-content-center mt-3">
+                                                <h6 class="card-title"><%= e.strEvent%></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row justify-content-center">
+                                        <p class="card-text"><small class="text-muted"> Posted on <%= e.dateEvent%></small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted" style="background-color: white; border-radius: 0 0 15px 15px">
+                Updates Every Day.
+            </div>
+        </div>
+        
+        <div class="card w-100" style="border:none; box-shadow: 0 1px 2px #ccc; border-radius:15px">
+             <div class="card-header" style ="border-radius: 15px 15px 0 0 ;background: linear-gradient(90deg, rgba(115,0,124,1) 0%, rgba(2,0,36,1) 100%); color:white; font-weight:bold">
+                <div class="container">
+                    <div class="row my-auto">
+                        <div class = "col-3"></div>
+                        <div class = "col-6 my-auto" style="text-align:center;">
+                            More News ...
+                        </div>
+                        <div class = "col-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-light" style="border: 1px solid #ced4da; border-right:none; background-color:white">
+                                        <img style="z-index:10000; height:20px; width: 20px"src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+                                    </button>
+                                </div>
+                                <input class="form-control w-100" placeholder="Search More..." id="searchInput"/>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-light" type="button" id="searchGoogle">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body"style="height:500px; overflow-y:auto; overflow-x:hidden">
+                <% for(let n of news){ %>
+                    <a href="/sports/<%=n._id%>" style="text-decoration:none; cursor:pointer">
+                         <div class="card my-3 py-3" style="background-color: #eee; box-shadow: 0 1px 2px #ccc; border:none; height: 7em">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h4 style="font-family: Arial; color: black"> <%= n.title%> </h4>
+                                        <small style="color:grey"> Updated At: <%= new Date(n.updatedAt).toLocaleDateString("en-US") %> </small>
+                                    </div>
+                                    <div class="col-3">
+                                        <img style= "height: 5em; width: 70%; border-radius: 10px"src="<%= n.image%>"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                <% } %>
+            </div>
+            <div class="card-footer" style="text-align:center; border-radius: 0 0 15px 15px">
+                We have so many more exciting articles to read!
+            </div>
+        </div>
+        
+        
+   </div>
+
+   <script>
+        $("#searchGoogle").on('click',()=>{
+            window.location = "https://news.google.com/search?q=sports%2C%20" + $("#searchInput").val();
+        })
+   </script>
 </body> 
 <%- include ('./partials/footer') %> 
 </html>
+
+
+
+

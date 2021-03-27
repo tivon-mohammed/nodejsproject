@@ -21,15 +21,20 @@ app.set('views', './views');
 app.get('/', (request, response) => {
     response.render('index')
 })
-app.get('/sports', (request, response) => {
-    response.render('sports.ejs')
-})
+
+import sportsRoutes from './routes/sportsRoutes';
+app.use('/sports', sportsRoutes);
+// app.get('/sports', (request, response) => {
+//     response.render('sports.ejs')
+// })
 app.get('/contactus', (request, response) => {
     response.render('contactus')
 })
 app.get('/aboutus', (request, response) => {
     response.render('aboutus')
 })
+
+
 
 //start express app
 app.listen(port,()=>{
