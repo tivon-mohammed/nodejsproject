@@ -22,6 +22,7 @@ import article from './models/Article.model';
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(express.static(__dirname+'/public'));
 app.get('/', (request, response) => {
     article.find({},(err,data)=>{
         response.render('index', {
