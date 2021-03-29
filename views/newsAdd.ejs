@@ -26,6 +26,13 @@
             <label for="image">Image URL:</label>
             <input type="text" class="form-control" id="image" placeholder="Enter image url" name="image">
           </div>
+          <select class="form-select" aria-label="Default select example" id="topic" name="topic">
+            <option selected>Type of topic</option>
+            <% for(let i of topic) {%>
+              <option value="<%=i%>"><%=i%></option>
+            <% } %>
+          </select>
+          <br>
           <br>
           <button type="submit" class="btn btn-primary">Add</button>
           <a href="/" class="btn btn-success" role="button">cancel</a>

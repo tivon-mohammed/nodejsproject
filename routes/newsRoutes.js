@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import config from '../config'
 import {LocalStorage} from 'node-localstorage'
 import Article from '../db/model/Article.model' 
+import TOPIC from '../db/model/topic.enum' 
 import user from '../db/model/user' 
 
 //defining constants 
@@ -33,13 +34,18 @@ router.route('/newsform').get((request, response) => {
             if (!userData) {
                 response.redirect('/login')
             }
-            response.render('newsAdd.ejs', {message: null})         
+            //console.log(TOPIC)
+            response.render('newsAdd.ejs', {message: null, topic : TOPIC})         
         });
     })
 }); 
 
 router.route('/newsadd').post(json(), urlencoded({extended:false}),cors(corsOptions), (request, response) => { 
     let articleQuery = request.body;
+    if(articleQuery.topic === 'Type of topic'){
+        articleQuery.topic = 'General'
+    }
+    //console.log(articleQuery)
     let localStorage = new LocalStorage('./Scratch')
     let token = localStorage.getItem('authToken')
     if(!token){
@@ -56,11 +62,12 @@ router.route('/newsadd').post(json(), urlencoded({extended:false}),cors(corsOpti
             content : articleQuery.content,
             writer : email,
             image : articleQuery.image,
+            topic : articleQuery.topic
         },(err,item)=>{ 
             if(err) { 
                 return response.status(500).send("there was a problem in add new form")
             } else {
-                response.render('newsAdd.ejs',{message: 'Successfully added a new article'})          
+                response.render('newsAdd.ejs',{message: 'Successfully added a new article', topic : TOPIC})          
             }        
         }) 
     })
