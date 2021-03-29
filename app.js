@@ -70,23 +70,7 @@ app.get('/login', (request, response) => {
         response.render('login', {error: request.query.valid?request.query.valid:'',
         msg: request.query.msg?request.query.msg:''})
     }
-    jwt.verify(token, config.secret, function(err, decoded) {
-        if (err) {
-            response.redirect('/login')
-        }
-        //console.log(decoded)
-        user.findById(decoded.id, { password: 0 }, function (err, user) {
-            if (err) {
-                response.redirect('/login')
-            }
-            if (!user) {
-                response.redirect('/login')
-            }
-            response.render('admin.ejs',{user})
-        });
-    });
-
-
+    response.redirect('/admin/profile');
 })
 app.get('/register', (request, response) => {
     response.render('register', {message: null, error: null})
