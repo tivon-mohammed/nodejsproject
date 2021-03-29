@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.chat-container{
+    max-width: 500px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgb(49, 56, 56);
+    color: rgb(241, 242, 248);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.chat-header{
+    min-height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header .logo{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.logo h3{
+    letter-spacing: 2px;
+    margin-left: 10px;
+}
+.chat-header p{
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+/* .chat-section{
+    padding: 20px;
+} */
+
+.main-wrapper{
+    width:100%;
+    height: 500px;
+}
+.chat-container textarea{
+    width: 100%;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.message-row{
+    display: grid;
+    grid-template-columns: 70%;
+    margin-bottom: 10px;
+}
+.your-message{
+    justify-content: end;
+    justify-items: end;
+    
+}
+.other-message{
+    justify-content:start;
+    justify-items:start;
+    
+}
+.message-text{
+    padding: 9px 14px;
+    margin-bottom: 5px;
+}
+.message-time{
+    font-size: 13px;
+}
+.your-message .message-time{
+    border-radius: 14px 14px 0 14px;
+}
+.msg-text{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.msg-text input,
+.msg-text button{
+    font-size: 13px;
+    flex: 4;
+    height: 40px;
+    outline:none ;
+    padding: 0 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+.msg-text button{
+    flex: 1;
+    max-width: 120px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.tArea{
+    height: 450px;
+    width: 450px;
+    font-size: 17px;
+    background-color: rgb(240, 241, 235);
+    border-radius: 6px;
+    font-family:serif;
+    padding-left: 7px;
+    padding-top: 3px;
+    color: black;
+}
+
+h5{
+    margin-left: 4%;
+}
+.chatbox-div-index{
+    position: absolute;
+    right: 0; 
+    bottom: 0;
+    
+}
+
+
+.allcontainer{
+    display: none;
+}
+
+.min-max-btn i{
+   padding: 8px;
+   padding-top: 20px;
+}
+
+#minbtn{
+    color: red;
+}
+
+#minbtn:hover{
+    background-color: grey;
+    cursor: pointer; 
+}
+#maxbtn{
+    color: green;
+}
+#maxbtn:hover{
+    background-color: grey;
+    cursor: pointer;
+}
+
+.chatPop{
+    visibility: hidden;
+    background: #0c0c0c;
+    color: white;
+	border-radius: .4em;
+    cursor: pointer;
+}
+
+

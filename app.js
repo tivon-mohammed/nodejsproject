@@ -1,10 +1,23 @@
 import express from 'express'
 import mongoose from 'mongoose'
+<<<<<<< HEAD
 import newsRoutes from './routes/newsRoutes'
 import authRoutes from './routes/authRoutes'
 import adminRoutes from './routes/adminRoutes'
 import {seedSportsData} from './seed/seedData';
 
+=======
+//Allen's imports
+import http from 'http'
+import path from 'path';
+import socketIO from 'socket.io'
+import {LocalStorage} from 'node-localstorage'
+import iplocate from 'node-iplocate'
+import publicIP from 'public-ip'
+import newsRouter from './routes/newsRoutes'
+const bodyparser = require('body-parser');
+let localstorage= new LocalStorage('./Scratch')
+>>>>>>> c99cbe5bf7d390bf843207c8898a7f7ecae09527
 
 //constants declared
 const app=express()
@@ -17,13 +30,24 @@ connection.once('open',()=>{
     seedSportsData();
 })
 
+app.use(bodyparser.urlencoded({
+    extended:true
+}));
 
 //app configurations
+<<<<<<< HEAD
 
 import article from './db/model/Article.model' 
 
+=======
+app.use(express.static("public"));
+>>>>>>> c99cbe5bf7d390bf843207c8898a7f7ecae09527
 app.set('view engine', 'ejs');
 app.set('views', './views');
+//route for admin
+app.use('/news',newsRouter);
+
+
 
 app.use(express.static(__dirname+'/public'));
 app.get('/', (request, response) => {
@@ -61,7 +85,63 @@ app.use('/news', newsRoutes);
 
 
 
-//start express app
-app.listen(port,()=>{
-    console.log("app started !!", port)
+
+
+app.get('/chatbox', (request, response) => {
+    response.render('chatbox.ejs')
 })
+//Allen code
+//index.html file
+//server for chat
+let server = http.createServer(app).listen(port,()=>{
+    console.log("chat is up on: ", port)
+})
+let io = socketIO(server)
+io.sockets.on('connection',(socket)=>{
+    //console.log("connected")
+    socket.on('nick',(nick)=>{
+        console.log(nick)
+        socket.nickname = nick
+        })
+
+        socket.on('chat',(data)=>{
+            
+            
+            //console.log(data)
+            publicIP.v4()
+                .then(ip=>{
+                    iplocate(ip)
+                    .then((results)=>{
+                        let city = JSON.stringify(results.city,null,2)
+                        localstorage.setItem('userLocal',city)
+                    })
+                })
+    
+            let nickname = socket.nickname?socket.nickname:'';
+                var time = new Date().toLocaleTimeString();
+                if(nickname){
+                    let list = socket.client.conn.server.clients
+                    let users = Object.keys(list)
+                    socket.emit('userList',users)
+
+            let payload={
+                message:data.message,
+                nick:nickname,
+                location:localstorage.getItem('userLocal'),
+                time:time
+            }
+            if(data.message){
+            socket.emit('chat',payload)
+            socket.broadcast.emit('chat',payload)
+            }
+          }
+     })
+})
+
+
+
+
+// //start express app
+// app.listen(port,()=>{
+//     console.log("app started !!", port)
+// })

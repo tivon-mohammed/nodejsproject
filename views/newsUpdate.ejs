@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ('./partials/admin_header') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update a news</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  </head>
+  
+  <body>
+      <div class="container">
+        <h2>Update news</h2>
+        <form name="form1" method="POST">
+          <% for(var i=0; i < article.length; i++) { %>
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" value="<%= article[i].title %>" placeholder="Enter title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea type="text" class="form-control" id="content" placeholder="Enter content" name="content" placeholder='Auto-Expanding Textarea'><%= article[i].content %> </textarea>
+          </div>
+          <div class="form-group">
+            <label for="image">Image URL:</label>
+            <input type="text" class="form-control" id="image" value="<%= article[i].image %>" placeholder="Enter image url" name="image">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Update</button>
+          <a href="/" class="btn btn-success" role="button">cancel</a>
+          <% } %>
+        </form>
+      </div>
+      <%- include ('./partials/footer') %>
+  </body>
+  <script>
+  </script>
+</html>
