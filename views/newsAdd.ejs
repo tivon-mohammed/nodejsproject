@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ('./partials/admin_header') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a new</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  </head>
+  <body>
+      <div class="container">
+        <h2>Add news</h2>
+        <form name="form1" action="/news/newsadd" method="POST">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea type="text" class="form-control" id="content" placeholder="Enter content" name="content" placeholder='Auto-Expanding Textarea'> </textarea>
+          </div>
+          <div class="form-group">
+            <label for="image">Image URL:</label>
+            <input type="text" class="form-control" id="image" placeholder="Enter image url" name="image">
+          </div>
+          <select class="form-select" aria-label="Default select example" id="topic" name="topic">
+            <option selected>Type of topic</option>
+            <% for(let i of topic) {%>
+              <option value="<%=i%>"><%=i%></option>
+            <% } %>
+          </select>
+          <br>
+          <br>
+          <button type="submit" class="btn btn-primary">Add</button>
+          <a href="/" class="btn btn-success" role="button">cancel</a>
+        </form>
+
+        <% if(message!=null){ %>    
+          <div style="color: green;"> <%= message%></div>
+        <%}%>
+      </div>
+      <%- include ('./partials/footer') %>
+  </body>
+  <script>
+    var textarea = document.querySelector('textarea');
+    textarea.addEventListener('keydown', autosize);
+                
+    function autosize(){
+      var el = this;
+      setTimeout(function(){
+        el.style.cssText = 'height:auto; padding:0';
+        // for box-sizing other than "content-box" use:
+        // el.style.cssText = '-moz-box-sizing:content-box';
+        el.style.cssText = 'height:' + el.scrollHeight + 'px';
+      },0);
+    }
+  </script>
+</html>
