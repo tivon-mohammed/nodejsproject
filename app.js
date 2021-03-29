@@ -20,7 +20,7 @@ connection.once('open',()=>{
 
 //app configurations
 
-import article from './models/Article.model';
+import article from './db/model/Article.model' 
 
 app.set('view engine', 'ejs');
 app.set('views', './views');

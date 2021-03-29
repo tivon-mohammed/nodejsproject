@@ -1,6 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import article from '../models/Article.model';
+import Article from '../db/model/Article.model' 
+
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -24,15 +25,15 @@ router.use((req,res,next)=>{
 })
 
 router.get('/:id', cors(corsOption), (req,res)=>{
-    let articleId = req.params["id"];
-    console.log("searched ID",articleId);
-    article.findOne({"_id": articleId}, (err, data)=>{
+    let ArticleId = req.params["id"];
+    console.log("searched ID",ArticleId);
+    Article.findOne({"_id": ArticleId}, (err, data)=>{
         console.log(data);
         if(err){
             throw err;
         }else{
             res.render('sportsNews', {
-                article: data
+                Article: data
             })
         }
     })
@@ -42,7 +43,7 @@ router.get('/', cors(corsOption), (req,res)=>{
     fetch("https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328")
     .then(response => response.json()).then(data => {
         let events = data.events;
-        article.find({}, (err,data)=>{
+        Article.find({}, (err,data)=>{
             res.render('sports', {
                 events: events,
                 news: data
@@ -57,11 +58,11 @@ router.get('/', cors(corsOption), (req,res)=>{
 })
 
 router.post('/post', cors(corsOption), (req,res)=>{
-    let articleQuery = req.body;
-    article.update(
-        articleQuery,
+    let ArticleQuery = req.body;
+    Article.update(
+        ArticleQuery,
         {
-            "$set":articleQuery,
+            "$set":ArticleQuery,
         },
         {
             "upsert":true
@@ -74,7 +75,7 @@ router.post('/post', cors(corsOption), (req,res)=>{
             }
         }
     )
-    // article.create(articleQuery, (err, data)=>{
+    // Article.create(ArticleQuery, (err, data)=>{
     //     if(err){
     //         throw err;
     //     }else{
