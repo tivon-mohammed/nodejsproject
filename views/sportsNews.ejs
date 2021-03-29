@@ -17,17 +17,17 @@
             <div class="row py-5">
                 <div class="col-8 px-5" style="border-right: dashed 1px #ccc">
                     <h1 class="mb-5" style="color: #555; font-family: Georgia"> 
-                        <%= article.title%>
+                        <%= Article.title%>
                     </h1>
                     <p class="mb-5">
-                        <%= article.content%>
+                        <%= Article.content%>
                     </p>
                     <div class="w-100" style="font-style:italic; text-align:right"> 
-                        <%=new Date(article.updatedAt).toLocaleDateString("en-US")%>, <%= article.writer%>  
+                        <%=new Date(Article.updatedAt).toLocaleDateString("en-US")%>, <%= Article.writer%>  
                     </div>
                 </div>
                 <div class="col-4">
-                    <img src="<%= article.image %>" style="width:100%; border-radius:15px; box-shadow: 1px 2px 2px #ccc"/>
+                    <img src="<%= Article.image %>" style="width:100%; border-radius:15px; box-shadow: 1px 2px 2px #ccc"/>
                 </div>
             </div>
         </div>

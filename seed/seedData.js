@@ -1,6 +1,6 @@
 import e from 'express';
 import fs from 'fs';
-import article from '../models/Article.model';
+import Article from '../db/model/Article.model' 
 import path from 'path';
 
 export function seedSportsData(){
@@ -12,7 +12,7 @@ export function seedSportsData(){
             
             var tmp = null;
             for(let s of seed){
-                article.findOne(
+                Article.findOne(
                     s,
                     (err,data)=>{
                         if(err){
@@ -21,7 +21,7 @@ export function seedSportsData(){
                             if(data != null && data !== undefined){
                                 console.log("data already exists!", data);
                             }else{
-                                article.create(s, (err,data)=>{
+                                Article.create(s, (err,data)=>{
                                     if(err){
                                         throw err;
                                     }else{

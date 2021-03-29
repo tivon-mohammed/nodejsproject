@@ -1,10 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import {seedSportsData} from './seed/seedData';
-
 import newsRoutes from './routes/newsRoutes'
 import authRoutes from './routes/authRoutes'
 import adminRoutes from './routes/adminRoutes'
+import {seedSportsData} from './seed/seedData';
+
 
 //constants declared
 const app=express()
@@ -20,7 +20,7 @@ connection.once('open',()=>{
 
 //app configurations
 
-import article from './models/Article.model';
+import article from './db/model/Article.model' 
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
