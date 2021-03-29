@@ -49,6 +49,7 @@ router.get('/register',  (req, res) => {
 });
 
 router.get('/logout', (req,res) => {
+    let localStorage = new LocalStorage('./Scratch')
     localStorage.removeItem('authtoken');
     localStorage.removeItem('currentuser')
     res.redirect('/');
