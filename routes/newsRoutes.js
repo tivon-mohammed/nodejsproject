@@ -56,7 +56,8 @@ router.route('/newsadd').post(json(), urlencoded({extended:false}),cors(corsOpti
         if(err){
             response.redirect('/');
         }
-        let email = localStorage.getItem('currentuser')
+        let email = localStorage.getItem('currentuser');
+        console.log("email",email);
         Article.create({
             title : articleQuery.title,
             content : articleQuery.content,
@@ -88,20 +89,28 @@ router.route('news').get(json(), urlencoded({extended:false}),cors(corsOptions),
 })
 
 //would take username and email as parameter
-router.get("/show",(req,res)=>{
-    //add temp data
-    // Article.create({
-    //     title : "Article 3",
-    //     content : "something2 something2",
-    //     writer : "xyz@gmail.com",
-    //     image : "Image2",
-    // })
-    Article.find((err,data)=>{
-        if(!err)
-        res.render('show',{data})
-    })
+router.route('/show').get((request, response) => { 
+    let localStorage = new LocalStorage('./Scratch')
+    let token = localStorage.getItem('authToken')
+    if(!token){
+        return response.redirect('/');
+    }
+    jwt.verify(token, config.secret, (err, decoded)=>{
+        if(err){
+            response.redirect('/');
+        }
+        //console.log(decoded)
+        let currentuser = localStorage.getItem('currentuser');
+        console.log("email:",currentuser);
 
-})
+        Article.find({writer : currentuser}, { password: 0 }, function (err, data) {
+            if (err) {
+                response.redirect('/')
+            }       
+            response.render('show',{data})
+        });
+    })
+}); 
 
 //delete news
 router.get("/show/delete/:_id",(req,res)=>{

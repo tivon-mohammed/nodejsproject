@@ -1,12 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose'
-<<<<<<< HEAD
 import newsRoutes from './routes/newsRoutes'
 import authRoutes from './routes/authRoutes'
 import adminRoutes from './routes/adminRoutes'
 import {seedSportsData} from './seed/seedData';
 
-=======
 //Allen's imports
 import http from 'http'
 import path from 'path';
@@ -17,7 +15,6 @@ import publicIP from 'public-ip'
 import newsRouter from './routes/newsRoutes'
 const bodyparser = require('body-parser');
 let localstorage= new LocalStorage('./Scratch')
->>>>>>> c99cbe5bf7d390bf843207c8898a7f7ecae09527
 
 //constants declared
 const app=express()
@@ -35,13 +32,10 @@ app.use(bodyparser.urlencoded({
 }));
 
 //app configurations
-<<<<<<< HEAD
 
 import article from './db/model/Article.model' 
 
-=======
 app.use(express.static("public"));
->>>>>>> c99cbe5bf7d390bf843207c8898a7f7ecae09527
 app.set('view engine', 'ejs');
 app.set('views', './views');
 //route for admin
