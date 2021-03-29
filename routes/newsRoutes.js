@@ -45,19 +45,25 @@ router.route('/newsadd').post(json(), urlencoded({extended:false}),cors(corsOpti
     if(!token){
         return response.redirect('/login');
     }
-    let email = localStorage.getItem('currentuser')
-    Article.create({
-        title : articleQuery.title,
-        content : articleQuery.content,
-        writer : email,
-        image : articleQuery.image,
-    },(err,item)=>{ 
-        if(err) { 
-            return response.status(500).send("there was a problem in add new form")
-        } else {
-            response.render('newsAdd.ejs',{message: 'Successfully added a new article'})          
-        }        
-    }) 
+
+    jwt.verify(token, config.secret, (err, decoded)=>{
+        if(err){
+            response.redirect('/');
+        }
+        let email = localStorage.getItem('currentuser')
+        Article.create({
+            title : articleQuery.title,
+            content : articleQuery.content,
+            writer : email,
+            image : articleQuery.image,
+        },(err,item)=>{ 
+            if(err) { 
+                return response.status(500).send("there was a problem in add new form")
+            } else {
+                response.render('newsAdd.ejs',{message: 'Successfully added a new article'})          
+            }        
+        }) 
+    })
 })
 
 
