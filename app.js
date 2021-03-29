@@ -1,9 +1,16 @@
 import express from 'express'
 import mongoose from 'mongoose'
 
+const contactRoute = require('./contactUs');
+
+
+
 //constants declared
 const app=express()
 const port=6500
+app.use(express.static('./public'))
+//app.use(bodyParser.json())
+//app.use()
 
 //mongoose connection 
 mongoose.connect('mongodb://127.0.0.1:27017/edureka',{useUnifiedTopology:true,useNewUrlParser:true})
@@ -13,7 +20,8 @@ connection.once('open',()=>{
 })
 
 
-//app configurations
+
+
 
 
 app.set('view engine', 'ejs');
@@ -25,9 +33,15 @@ app.get('/', (request, response) => {
 app.get('/sports', (request, response) => {
     response.render('sports.ejs')
 })
-app.get('/contactus', (request, response) => {
-    response.render('contactus')
-})
+
+
+// app.get('/contactus', (request, response) => {
+//     response.render('contactus')
+// })
+app.use(express.json());
+app.use('/', contactRoute);
+
+
 app.get('/aboutus', (request, response) => {
     response.render('aboutus')
 })
