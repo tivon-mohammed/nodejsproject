@@ -58,13 +58,29 @@ router.get('/', cors(corsOption), (req,res)=>{
 
 router.post('/post', cors(corsOption), (req,res)=>{
     let articleQuery = req.body;
-    article.create(articleQuery, (err, data)=>{
-        if(err){
-            throw err;
-        }else{
-            res.send(data);
+    article.update(
+        articleQuery,
+        {
+            "$set":articleQuery,
+        },
+        {
+            "upsert":true
+        },
+        (err,data)=>{
+            if(err){
+                throw err;
+            }else{
+                res.send(data);
+            }
         }
-    })
+    )
+    // article.create(articleQuery, (err, data)=>{
+    //     if(err){
+    //         throw err;
+    //     }else{
+    //         res.send(data);
+    //     }
+    // })
 })
 
 module.exports = router;

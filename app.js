@@ -1,5 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import {seedSportsData} from './seed/seedData';
+
 
 //constants declared
 const app=express()
@@ -8,18 +10,25 @@ const port=8008
 mongoose.connect('mongodb://127.0.0.1:27017/edureka',{useUnifiedTopology:true,useNewUrlParser:true})
 const connection=mongoose.connection;
 connection.once('open',()=>{
-    console.log("MongoDB connected!!!!")
+    console.log("MongoDB connected!!!!");
+    seedSportsData();
 })
 
 
 //app configurations
 
+import article from './models/Article.model';
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.get('/', (request, response) => {
-    response.render('index')
+    article.find({},(err,data)=>{
+        response.render('index', {
+            news:data
+        })
+    })
+    // response.render('index')
 })
 
 import sportsRoutes from './routes/sportsRoutes';
