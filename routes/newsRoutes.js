@@ -6,7 +6,7 @@ import config from '../config'
 import {LocalStorage} from 'node-localstorage'
 import Article from '../db/model/Article.model' 
 import TOPIC from '../db/model/topic.enum' 
-import user from '../db/model/user' 
+import user from '../db/model/user.model' 
 
 //defining constants 
 const router = Router(); 
@@ -70,6 +70,20 @@ router.route('/newsadd').post(json(), urlencoded({extended:false}),cors(corsOpti
                 response.render('newsAdd.ejs',{message: 'Successfully added a new article', topic : TOPIC})          
             }        
         }) 
+    })
+})
+
+router.route('news').get(json(), urlencoded({extended:false}),cors(corsOptions), (request, response) => { 
+    let localStorage = new LocalStorage('./Scratch')
+    let token = localStorage.getItem('authToken')
+    if(!token){
+        return response.redirect('/');
+    }
+    jwt.verify(token, config.secret, (err, decoded)=>{
+        if(err){
+            response.redirect('/');
+        }
+        
     })
 })
 

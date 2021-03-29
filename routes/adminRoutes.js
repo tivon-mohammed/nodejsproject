@@ -1,6 +1,6 @@
 import { Router, json } from 'express'; 
 import cors from 'cors' 
-import user from '../db/model/user' 
+import user from '../db/model/user.model' 
 import {LocalStorage} from 'node-localstorage'
 import jwt from 'jsonwebtoken'
 import config from '../config'

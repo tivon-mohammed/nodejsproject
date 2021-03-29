@@ -44,7 +44,7 @@
         font-weight: normal;
         margin-bottom: 23px; }
     .register-card form {
-        max-width: 326px; }
+        max-width: 626px; }
     .register-card .form-control {
         border: 1px solid #d5dae2;
         padding: 15px 25px;
@@ -93,12 +93,11 @@
     </style>
   </style>
   <body>
-
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
-      <div class="card register-card">
-          <div class="row no-gutters">        
-          <div class="col-md-7">
-              <div class="card-body">                
+      <div class="card register-card">      
+          <div class="row">
+              <div class="card-body column-md-7">                
                 <p class="register-card-description">Register a new User</p>
                 <form name="form1" action="/auth/register" method="POST">
                   <div class="form-group">
@@ -123,10 +122,15 @@
                   <%}%>
                 </form>
               </div>
+              <div class="card-body column-md-3">                
+                <img 
+              </div>
+              
           </div>
         </div>
       </div>
     </div>
+  </main>
   </body>
   <%- include ('./partials/footer') %> 
 </html>

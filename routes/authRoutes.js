@@ -1,6 +1,6 @@
 import { Router, json, urlencoded } from 'express'; 
 import cors from 'cors' 
-import user from '../db/model/user' 
+import user from '../db/model/user.model' 
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import config from '../config'
