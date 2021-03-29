@@ -38,7 +38,7 @@ router.get('/profile', function (req, res) {
             if (!user) {
                 res.redirect('/login')
             }
-            localStorage.setItem('currentuser', user.email);
+            localStorage.setItem('currentuser', user);
             res.render('admin.ejs',{user})
         });
     });
