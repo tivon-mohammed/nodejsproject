@@ -25,11 +25,13 @@ const app=express()
 const port=8008
 //mongoose connection 
 mongoose.connect('mongodb://127.0.0.1:27017/edureka',{useUnifiedTopology:true,useNewUrlParser:true})
+
 const connection=mongoose.connection;
+
 connection.once('open',()=>{
     console.log("MongoDB connected!!!!");
     seedSportsData();
-}
+})
 
 const request = require('request');
 const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
@@ -110,6 +112,7 @@ app.get('/chatbox', (request, response) => {
 let server = http.createServer(app).listen(port,()=>{
     console.log("chat is up on: ", port)
 })
+
 let io = socketIO(server)
 io.sockets.on('connection',(socket)=>{
     //console.log("connected")
@@ -164,9 +167,9 @@ app.get('/weather', (req, res) => {
 })
 
 //start express app
-app.listen(port, () => {
-    console.log("app started !!", port)
-})
+// app.listen(port, () => {
+//     console.log("app started !!", port)
+// })
 
 
 function getWeather(url) {
