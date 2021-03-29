@@ -22,15 +22,7 @@ const contactRoute = require('./contactUs');
 
 //constants declared
 const app=express()
-<<<<<<< HEAD
 const port=8008
-=======
-const port=6500
-app.use(express.static('./public'))
-//app.use(bodyParser.json())
-//app.use()
-
->>>>>>> c07157490db728655c0491ed4a1a9e0b93413a43
 //mongoose connection 
 mongoose.connect('mongodb://127.0.0.1:27017/edureka',{useUnifiedTopology:true,useNewUrlParser:true})
 const connection=mongoose.connection;
@@ -57,6 +49,7 @@ app.use('/news',newsRouter);
 
 
 app.use(express.static(__dirname+'/public'));
+
 app.get('/', (request, response) => {
     article.find({},(err,data)=>{
         response.render('index', {
@@ -66,7 +59,6 @@ app.get('/', (request, response) => {
     // response.render('index')
 })
 
-<<<<<<< HEAD
 import sportsRoutes from './routes/sportsRoutes';
 app.use('/sports', sportsRoutes);
 // app.get('/sports', (request, response) => {
@@ -75,7 +67,6 @@ app.use('/sports', sportsRoutes);
 app.get('/contactus', (request, response) => {
     response.render('contactus')
 })
-=======
 
 // app.get('/contactus', (request, response) => {
 //     response.render('contactus')
@@ -84,7 +75,6 @@ app.use(express.json());
 app.use('/', contactRoute);
 
 
->>>>>>> c07157490db728655c0491ed4a1a9e0b93413a43
 app.get('/aboutus', (request, response) => {
     response.render('aboutus')
 })
