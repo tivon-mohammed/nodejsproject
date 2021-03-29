@@ -9,7 +9,14 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
-    <div class="chat-container">
+    <span class="chatPop" onclick="displaychat()" id="popup">Chat Here</span>
+    <div class="chat-container">   
+    <div class="container min-max-btn" id="min-max-container">
+        <i  onclick="hidechat()" id="minbtn" class="fa fa-window-minimize" aria-hidden="true"></i>
+        <i onclick="displaychat()" id="maxbtn" class="fa fa-window-maximize" aria-hidden="true" ></i>
+     </div>
+
+        <div class="allcontainer" id="chatcontainer">
         <div class="chat-header">
             <div class="logo" style="margin-right: 15%;">
                 <i class="fa fa-comments" style="font-size: 30px;" aria-hidden="true"></i>
@@ -34,12 +41,13 @@
                 <div class="msg-text">
                     <input type="text" name="msg" id="chatText"
                     placeholder="Type Message Here...." autocomplete="off">
-                    <button id="chat" class="btn btn-primary">
+                    <button id="chat" class="btn btn-primary" onclick="areascroll()" >
                         <i class="fas fa-paper-plane"> Send</i>
                     </button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 <script src="/socket.io/socket.io.js"></script> 
@@ -48,7 +56,10 @@
     var socket =io.connect()
 
     socket.on('chat',(data)=>{
-        var msg = data.nick+"(From "+data.location+" "+data.time+")"+" :"+data.message
+
+        var p1 = (data.nick+"(From "+data.location+" "+data.time+")"+" :")
+        var p2 = (data.message)
+        var msg = p1+p2
         $('textarea').val($('textarea').val()+msg+'\n')
         
     })
@@ -66,7 +77,7 @@
             
             socket.on('userList',(users)=>{
             document.getElementById('usersNo').innerHTML=users.length
-            //clear input after sending chat or emiting 
+            //clear input after sending chat
             $('#chatText').val('')
             })
         })
@@ -75,11 +86,12 @@
 
 
 
-    //To scroll at the bottom for chat box
-    var textarea = document.getElementById('chat-area');
-    setInterval(function(){
+    //To scroll at the bottom for chat box on click of send button
+   var textarea = document.getElementById('chat-area');
+    function areascroll(){
     textarea.scrollTop = textarea.scrollHeight;
-    });
+    textarea.scrollBottom = textarea.scrollHeight;
+    };
 
     //lets user send msg with enter
     $('#chatText').keypress(function(e){
@@ -87,6 +99,34 @@
             $('#chat').click();
         }
     })
+
+    function displaychat(){
+        var a = document.getElementById('chatcontainer')
+            a.style.display = 'block'
+        hidepop()
+    }
+
+    function hidechat(){
+        var a = document.getElementById('chatcontainer')
+            a.style.display = 'none'
+        showpop()
+    }
+
+    $(function(){
+        var a = document.getElementById('chatcontainer')
+         document.getElementById('popup').style.visibility = 'visible'
+    })
+
+    function hidepop(){
+        var a = document.getElementById('chatcontainer')
+         document.getElementById('popup').style.visibility = 'hidden'
+    }
+
+    function showpop(){
+        var a = document.getElementById('chatcontainer')
+         document.getElementById('popup').style.visibility = 'visible'
+    }
+
 </script>
 
 </html>

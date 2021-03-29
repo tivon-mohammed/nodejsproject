@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
 
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 .chat-container{
@@ -14,6 +14,9 @@
     overflow: hidden;
     background-color: rgb(49, 56, 56);
     color: rgb(241, 242, 248);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .chat-header{
@@ -38,9 +41,9 @@
     cursor: pointer;
 }
 
-.chat-section{
+/* .chat-section{
     padding: 20px;
-}
+} */
 
 .main-wrapper{
     width:100%;
@@ -92,7 +95,9 @@
     height: 40px;
     outline:none ;
     padding: 0 10px;
-    border-radius: 3px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
 }
 .msg-text button{
@@ -108,12 +113,13 @@
 .tArea{
     height: 450px;
     width: 450px;
-    font-size: 15px;
-    background-color: rgb(143, 223, 111);
+    font-size: 17px;
+    background-color: rgb(240, 241, 235);
     border-radius: 6px;
     font-family:serif;
     padding-left: 7px;
     padding-top: 3px;
+    color: black;
 }
 
 h5{
@@ -123,5 +129,41 @@ h5{
     position: absolute;
     right: 0; 
     bottom: 0;
+    
 }
+
+
+.allcontainer{
+    display: none;
+}
+
+.min-max-btn i{
+   padding: 8px;
+   padding-top: 20px;
+}
+
+#minbtn{
+    color: red;
+}
+
+#minbtn:hover{
+    background-color: grey;
+    cursor: pointer; 
+}
+#maxbtn{
+    color: green;
+}
+#maxbtn:hover{
+    background-color: grey;
+    cursor: pointer;
+}
+
+.chatPop{
+    visibility: hidden;
+    background: #0c0c0c;
+    color: white;
+	border-radius: .4em;
+    cursor: pointer;
+}
+
 

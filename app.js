@@ -1,12 +1,14 @@
 import express from 'express'
 import mongoose from 'mongoose'
-//Allen imports
+//Allen's imports
 import http from 'http'
 import path from 'path';
 import socketIO from 'socket.io'
 import {LocalStorage} from 'node-localstorage'
 import iplocate from 'node-iplocate'
 import publicIP from 'public-ip'
+import newsRouter from './routes/newsRoutes'
+const bodyparser = require('body-parser');
 let localstorage= new LocalStorage('./Scratch')
 
 //constants declared
@@ -20,11 +22,16 @@ connection.once('open',()=>{
     console.log("MongoDB connected!!!!")
 })
 
+app.use(bodyparser.urlencoded({
+    extended:true
+}));
 
 //app configurations
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.set('views', './views');
+//route for admin
+app.use('/news',newsRouter);
 
 
 
