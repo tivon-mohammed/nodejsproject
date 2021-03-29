@@ -1,13 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose'
-<<<<<<< HEAD
 import {seedSportsData} from './seed/seedData';
 
-=======
 import newsRoutes from './routes/newsRoutes'
 import authRoutes from './routes/authRoutes'
 import adminRoutes from './routes/adminRoutes'
->>>>>>> d0b51a17b9d08a12dba1315e9105add42b792df7
 
 //constants declared
 const app=express()
