@@ -1,0 +1,69 @@
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+<style>
+    .marker {
+        background-image: url('../../assets/images/cool.png');
+        background-size: cover;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .mapboxgl-popup {
+        max-width: 200px;
+        
+    }
+
+    .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #444;
+        }
+    .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #444;
+        }
+    .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #444;
+        }
+    .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #444;
+        }
+
+    .mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Helvetica';
+    border-radius: 15px;
+    background-color: #444;
+    }
+</style>
+<div id='map' style='width: 400px; height: 300px; border-radius: 15px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3)'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoibm9zc3UzNzUxIiwiYSI6ImNrbXV2b3NsNTE1bXYyd25zZjZuMG14NzkifQ.kNLkq04imJHNiPBhsYHO0Q';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/nossu3751/ckah7wobi02f71ipm1136dj15',
+    center: [-74.5, 40],
+    zoom: 9
+});
+
+map.addControl(new mapboxgl.NavigationControl());
+
+var markerDiv = document.createElement('div');
+markerDiv.className = 'marker';
+
+new mapboxgl.Marker(markerDiv).setLngLat([-74.5, 40]).addTo(map);
+
+new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false,
+    offset: 25
+}).setLngLat([-74.5, 40]).setHTML(
+    '<h5 style="font-weight:bold; color:white"> Where Are We? </h5>' + 
+    '<small style="color:white"> Here We are! </small>' 
+).addTo(map)
+</script>
