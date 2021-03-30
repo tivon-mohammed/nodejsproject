@@ -34,7 +34,7 @@ connection.once('open',()=>{
 })
 
 const request = require('request');
-const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
+
 
 
 //mongoose connection 
@@ -59,13 +59,18 @@ app.use('/news',newsRouter);
 app.use(express.static(__dirname+'/public'));
 
 app.get('/', (request, response) => {
-    article.find({},(err,data)=>{
-        response.render('index', {
-            news:data
+    article.find({"topic":"Sport"},(err,sportsNews)=>{
+        getWeather().then(JSON.parse).then((weather)=>{
+            response.render('index', {
+                news:sportsNews,
+                weather: weather
+            })
         })
     })
-    // response.render('index')
 })
+
+import searchRoutes from './routes/searchRoutes';
+app.use('/search', searchRoutes);
 
 import sportsRoutes from './routes/sportsRoutes';
 app.use('/sports', sportsRoutes);
@@ -156,7 +161,9 @@ io.sockets.on('connection',(socket)=>{
 })
 
 
+// Weather API
 
+const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
 
 app.get('/weather', (req, res) => {
     var dataPromise = getWeather();

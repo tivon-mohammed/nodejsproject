@@ -75,13 +75,6 @@ router.post('/post', cors(corsOption), (req,res)=>{
             }
         }
     )
-    // Article.create(ArticleQuery, (err, data)=>{
-    //     if(err){
-    //         throw err;
-    //     }else{
-    //         res.send(data);
-    //     }
-    // })
 })
 
 module.exports = router;

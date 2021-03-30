@@ -4,15 +4,17 @@
 <%- include ('./partials/header') %> 
 </head> 
 <body> 
- <h1>index</h1>
+    <%- include ('./partials/sports_partial', {news:news}) %>
+    <hr/>
+    <%- include ('./partials/weather_partial', {result:weather}) %>
+    
+    
 
- <%- include ('./partials/sports_partial', {news:news}) %>
 
+    <div class="chatbox-div-index">
+        <%- include ('./partials/chatbox') %> 
+    </div>
 
-<div class="chatbox-div-index">
-    <%- include ('./partials/chatbox') %> 
-</div>
-
-<%- include ('./partials/footer') %> 
+    <%- include ('./partials/footer') %> 
 </body> 
 </html>

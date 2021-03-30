@@ -40,7 +40,7 @@
     }
 </style>
 
-<div id='map' style='position:absolute; width: 100%; height: 100%; border-radius: 20px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3)'></div>
+<div id='map' style='position:relative; width: 100%; height: 100%; border-radius: 20px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3)'></div>
 
 <script>
 
@@ -48,7 +48,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoibm9zc3UzNzUxIiwiYSI6ImNrbXV2b3NsNTE1bXYyd25zZ
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/nossu3751/ckah7wobi02f71ipm1136dj15',
-    center: [-74.5, 40],
+    center: [2.29, 48.85],
     zoom: 9
 });
 
@@ -57,13 +57,13 @@ map.addControl(new mapboxgl.NavigationControl());
 var markerDiv = document.createElement('div');
 markerDiv.className = 'marker';
 
-new mapboxgl.Marker(markerDiv).setLngLat([-74.5, 40]).addTo(map);
+new mapboxgl.Marker(markerDiv).setLngLat([2.29, 48.85]).addTo(map);
 
 new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false,
     offset: 25
-}).setLngLat([-74.5, 40]).setHTML(
+}).setLngLat([2.29, 48.85]).setHTML(
     '<h5 style="font-weight:bold; color:white"> Where Are We? </h5>' + 
     '<small style="color:white"> Here We are! </small>' 
 ).addTo(map)

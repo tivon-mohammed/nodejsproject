@@ -35,7 +35,7 @@
     }
 </style>
 
-<div class="container mt-5">
+<div class="container my-5">
     <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -52,20 +52,23 @@
                                 <div class="row justify-content-center mb-3">
                                     <h4 style="font-weight: bold; color:white; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3)">Search Sports!</h4>
                                 </div>
-                                <div class="input-group my-auto">
-                                <input class="form-control w-100" placeholder="Search More..." style="border-radius: 500px 0 0 500px"/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-dark" type="button" style="border-radius: 0 500px 500px 0">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
+                                <form action="/search" method="POST">
+                                    <div class="input-group my-auto">
+                                        <input name="keyword" class="form-control w-100" placeholder="Search More..." style="border-radius: 500px 0 0 500px"/>
+                                        <div class="input-group-append">
+                                            
+                                            <button type="submit" id="search" class="btn btn-outline-dark" style="border-radius: 0 500px 500px 0">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="col-2"></div>
                     </div>
                 </div>
-                
             </div>
             <div class="carousel-item active">
                 <div class="w-100 row" style="position:absolute;">
@@ -100,7 +103,6 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-3"></div>
                 </div>
                 <img class="d-block w-100" src="<%= news[1].image %>" alt="Third slide">
             </div>
@@ -123,13 +125,5 @@
                 <img class="d-block w-100" src="<%= news[2].image %>" alt="Third slide">
             </div>
         </div>
-        <!--<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>-->
     </div>
 </div>

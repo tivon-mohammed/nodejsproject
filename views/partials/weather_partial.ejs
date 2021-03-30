@@ -1,0 +1,85 @@
+<style>
+    .card{
+        border-radius: 15px !important;
+        background-color: #051258b0 !important;
+        color: white;
+    }
+    .card:hover { transform: scale(1.1); }
+    .card-img-top{
+    width:100%
+    }
+
+    .headingh1{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px #28346c;
+    }
+
+    .max{
+    color: rgb(166, 226, 236);
+    font-weight: bold;
+    }
+    .min{
+    color:rgb(104, 155, 241);
+    font-weight: bold;
+    }
+    .day{
+    color: rgb(187, 187, 187);
+    }
+    .humid{
+    color:rgb(44, 112, 105);
+    }
+    .topTemp{
+    font-size:26px;
+    color:white;
+    font-weight: bold;
+    }
+</style>
+<div class="container my-5">
+    <div class="d-flex">
+        <%for(let i=0; i<result.list.length;i++){%>
+            <div class="flex-fill p-2">
+                <div class="card">
+                    <img class="card-img-top" src='https://openweathermap.org/img/w/<%=result.list[i].weather[0].icon%>.png' alt="weather" />
+                    <div class="card-body" style="padding-top: 0 !important">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <span class="topTemp" style="width:fit-content"><%=result.list[i].temp.day%>°C</span>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-2" style="text-align:right">
+                                    <i class="fas fa-temperature-high" style="font-size:x-large; color:#e8694d" ></i>
+                                </div>
+                                <div class="col" style="text-align:center">
+                                    <h6 style="color:#e8694d; border-left:dashed 1px white"><%=result.list[i].temp.max%>°C</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2" style="text-align:right">
+                                    <i class="fas fa-temperature-low" style="font-size:x-large; color:#4575e6 "></i>
+                                </div>
+                                <div class="col" style="text-align:center; ">
+                                    <h6 style="color:#4575e6; border-left:dashed 1px white"><%=result.list[i].temp.min%>°C</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="card-title">
+                            <%=result.list[i].weather[0].weather%>
+                        </h4>
+                        <p class="card-text">
+                            <span class="day">
+                                <%=Date(result.list[i].dt)%>
+                            </span>
+                        </p>
+                        <hr/>
+                        <div class="row justify-content-center">
+                            <span>
+                                Humidity: <%=result.list[i].humidity%>%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+    </div>
+</div>
