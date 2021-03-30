@@ -4,6 +4,9 @@ import newsRoutes from './routes/newsRoutes'
 import authRoutes from './routes/authRoutes'
 import adminRoutes from './routes/adminRoutes'
 import {seedSportsData} from './seed/seedData';
+import jwt from 'jsonwebtoken'
+import config from './config'
+import user from './db/model/user.model' 
 
 //Allen's imports
 import http from 'http'
@@ -19,15 +22,12 @@ let localstorage= new LocalStorage('./Scratch')
 const contactRoute = require('./contactUs');
 
 
-
 //constants declared
 const app=express()
 const port=8008
 //mongoose connection 
 mongoose.connect('mongodb://127.0.0.1:27017/edureka',{useUnifiedTopology:true,useNewUrlParser:true})
-
 const connection=mongoose.connection;
-
 connection.once('open',()=>{
     console.log("MongoDB connected!!!!");
     seedSportsData();
@@ -45,19 +45,14 @@ app.use(bodyparser.urlencoded({
 
 
 
+//app configurations
 
 import article from './db/model/Article.model' 
 
-app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.set('views', './views');
-//route for admin
-app.use('/news',newsRouter);
-
-
 
 app.use(express.static(__dirname+'/public'));
-
 app.get('/', (request, response) => {
     article.find({"topic":"Sport"},(err,sportsNews)=>{
         getWeather().then(JSON.parse).then((weather)=>{
@@ -80,20 +75,19 @@ app.use('/sports', sportsRoutes);
 app.get('/contactus', (request, response) => {
     response.render('contactus')
 })
-
-// app.get('/contactus', (request, response) => {
-//     response.render('contactus')
-// })
-app.use(express.json());
-app.use('/', contactRoute);
-
-
 app.get('/aboutus', (request, response) => {
     response.render('aboutus')
 })
 app.get('/login', (request, response) => {
-    response.render('login', {error: request.query.valid?request.query.valid:'',
-                                msg: request.query.msg?request.query.msg:''})
+    let localStorage = new LocalStorage('./Scratch')
+    let token = localStorage.getItem('authToken')
+    //console.log("token>>>",token)
+    if (!token) {         
+        response.render('login', {error: request.query.valid?request.query.valid:'',
+        msg: request.query.msg?request.query.msg:''})
+    } else {
+        response.redirect('/admin/profile');
+    }
 
 })
 app.get('/register', (request, response) => {
@@ -174,42 +168,6 @@ app.get('/weather', (req, res) => {
 })
 
 //start express app
-// app.listen(port, () => {
-//     console.log("app started !!", port)
-// })
-
-
-function getWeather(url) {
-    // Setting URL and headers for request
-    var options = {
-        url: weatherUrl,
-        headers: {
-            'User-Agent': 'request'
-        }
-    };
-    // Return new promise 
-    return new Promise(function(resolve, reject) {
-        // Do async job
-        request.get(options, function(err, resp, body) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(body);
-            }
-        })
-    })
-}
-
-
-
-app.get('/weatherwithoutpromise', (req, res) => {
-    request(url, (err, response, body) => {
-        if (err) {
-            console.log(err);
-        } else {
-
-            const output = JSON.parse(body);
-            res.send(output);
-        }
-    });
-});
+app.listen(port,()=>{
+    console.log("app started !!", port)
+})

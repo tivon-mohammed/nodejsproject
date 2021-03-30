@@ -19,13 +19,13 @@ export function seedSportsData(){
                             throw err;
                         }else{
                             if(data != null && data !== undefined){
-                                console.log("data already exists!", data);
+                                //console.log("data already exists!", data);
                             }else{
                                 Article.create(s, (err,data)=>{
                                     if(err){
                                         throw err;
                                     }else{
-                                        console.log("seeded:", data);
+                                        //console.log("seeded:", data);
                                     }
                                 })
                             }
