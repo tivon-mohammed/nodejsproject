@@ -145,4 +145,28 @@ router.post("/show/update/:_id",(req,res)=>{
     })
 })
 
+router.get("/show/:_id",(req,res)=>{
+    var id = req.params._id;
+    //console.log(id)
+    Article.find({_id:id},(err,article)=>{
+        //console.log(article[0])
+        if(err){ 
+            res.redirect('/')
+        } else {
+            user.find({email : article[0].writer}, (err, user)=>{
+                //console.log(user)
+                if(err){
+                    res.redirect('/')
+                } else {
+                    article[0].writer = user[0].name
+                    //console.log(article[0])
+                    res.render('articles', {
+                        Article: article[0]
+                    })
+                }
+            })
+        }   
+    })
+})
+
 module.exports=router;

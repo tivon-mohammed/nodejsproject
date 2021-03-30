@@ -54,14 +54,17 @@ app.set('views', './views');
 
 app.use(express.static(__dirname+'/public'));
 app.get('/', (request, response) => {
-    article.find({"topic":"Sport"},(err,sportsNews)=>{
+    article.find({},(err,artciles)=>{
         getWeather().then(JSON.parse).then((weather)=>{
-            response.render('index', {
-                news:sportsNews,
-                weather: weather
+            article.find({"topic":"Sport"},(err,sportsNews)=>{ 
+                response.render('index', {
+                    articles: artciles,
+                    news:sportsNews,
+                    weather: weather
+                })               
             })
         })
-    })
+    }).sort({createdAt : -1}).limit(3)
 })
 
 import searchRoutes from './routes/searchRoutes';

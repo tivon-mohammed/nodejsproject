@@ -12,6 +12,8 @@
         </div>
     </div>
     <hr/>
+    <%- include ('./partials/news_partial', {news:articles}) %>
+    
     <%- include ('./partials/sports_partial', {news:news}) %>
     <hr/>
     <%- include ('./partials/weather_partial', {result:weather}) %>
