@@ -56,12 +56,12 @@ router.route('/newsadd').post(json(), urlencoded({extended:false}),cors(corsOpti
         if(err){
             response.redirect('/');
         }
-        let user = localStorage.getItem('currentuser');
-        console.log("email",user.email);
+        let email = localStorage.getItem('currentuser');
+
         Article.create({
             title : articleQuery.title,
             content : articleQuery.content,
-            writer : user.email,
+            writer : email,
             image : articleQuery.image,
             topic : articleQuery.topic
         },(err,item)=>{ 
@@ -100,10 +100,8 @@ router.route('/show').get((request, response) => {
             response.redirect('/');
         }
         //console.log(decoded)
-        let user = localStorage.getItem('currentuser');
-        console.log("email",user.email);
-
-        Article.find({writer : user.email}, { password: 0 }, function (err, data) {
+        let email = localStorage.getItem('currentuser');
+        Article.find({writer : email}, { password: 0 }, function (err, data) {
             if (err) {
                 response.redirect('/')
             }       

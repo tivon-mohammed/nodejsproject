@@ -38,7 +38,7 @@ router.get('/profile', function (req, res) {
             if (!user) {
                 res.redirect('/login')
             }
-            localStorage.setItem('currentuser', user);
+            localStorage.setItem('currentuser', user.email);
             res.render('admin.ejs',{user})
         });
     });
@@ -50,7 +50,7 @@ router.get('/register',  (req, res) => {
 
 router.get('/logout', (req,res) => {
     let localStorage = new LocalStorage('./Scratch')
-    localStorage.removeItem('authtoken');
+    localStorage.removeItem('authToken');
     localStorage.removeItem('currentuser')
     res.redirect('/');
 })

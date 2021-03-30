@@ -35,7 +35,8 @@ router.route('/register').post(json(), urlencoded({extended:false}),cors(corsOpt
                     let token = jwt.sign({id: userData.id}, config.secret, {expiresIn: 86400})
                     let localStorage = new LocalStorage('./Scratch');
                     localStorage.setItem('authToken', token)    
-                    response.render('register.ejs', {message: 'Register successfully. Please Login', error: null})        
+                    // response.render('register.ejs', {message: 'Register successfully. Please Login', error: null})   
+                    response.redirect('/login')     
                 }        
             }) 
         } else{

@@ -69,8 +69,10 @@ app.get('/login', (request, response) => {
     if (!token) {         
         response.render('login', {error: request.query.valid?request.query.valid:'',
         msg: request.query.msg?request.query.msg:''})
+    } else {
+        response.redirect('/admin/profile');
     }
-    response.redirect('/admin/profile');
+
 })
 app.get('/register', (request, response) => {
     response.render('register', {message: null, error: null})
