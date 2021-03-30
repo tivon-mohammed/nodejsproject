@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<%- include ('./partials/header') %> 
+</head> 
+
+
+
+<div class="container mt-5 py-2">
+    <div class="card" style="border-radius:15px; box-shadow: 0 2px 2px #ccc; border:none; background-color:#f5f5f5">
+        <span style="position: absolute; top:20px; left:30px; font-weight:bold;">
+            <a href="/sports" style="color:grey; text-decoration:none">
+                <i class="mr-3 fas fa-chevron-left"></i>  Back to Sports
+            </a>
+        </span>
+        <div class="container" style="margin-top:40px">
+            <div class="row py-5">
+                <div class="col-8 px-5" style="border-right: dashed 1px #ccc">
+                    <h1 class="mb-5" style="color: #555; font-family: Georgia"> 
+                        <%= Article.title%>
+                    </h1>
+                    <p class="mb-5">
+                        <%= Article.content%>
+                    </p>
+                    <div class="w-100" style="font-style:italic; text-align:right"> 
+                        <%=new Date(Article.updatedAt).toLocaleDateString("en-US")%>, <%= Article.writer%>  
+                    </div>
+                </div>
+                <div class="col-4">
+                    <img src="<%= Article.image %>" style="width:100%; border-radius:15px; box-shadow: 1px 2px 2px #ccc"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('./partials/footer') %> 
+</html>
+
+

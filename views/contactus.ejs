@@ -10,23 +10,24 @@
         <div>
 
         </div>
-        <hr />
-        <div class="row">
+        <div class="row mt-5">
 
             <div class=" col-md-12 px-4 py-4 mx-auto">
                 <form action="/post" method="post">
                     <label for="team_name">Enter name: </label>
                     <input class="form-control" id="team_name" type="text" name="name_field"
-                        value="Default name for team.">
-                    <label for="team_address">Address: </label>
-                    <input class="form-control" id="team_address" type="text" name="address_field"
-                        value="Default Address for team.">
+                        placeholder="What is your name?">
 
                     <label for="team_email">Email: </label>
-                    <input class="form-control" id="team_email" type="email" name="email_field"
-                        value="Default email for team.">
+                    <input class="form-control " id="team_email" type="email" name="email_field"
+                        placeholder="Where should we respond to?">
+                    <label for="team_address">Query: </label>
+                    <textarea class="form-control" id="team_address" type="text" name="address_field"
+                        placeholder="What do you want to ask?" style="height:200px"></textarea>
 
-                    <button class=" btn btn-primary" type="submit">Submit</button>
+                    
+
+                    <button class=" btn btn-primary btn-block mt-5" type="submit">Submit</button>
                 </form>
             </div>
 

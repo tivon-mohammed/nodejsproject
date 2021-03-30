@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<%- include ('./partials/header') %> 
+</head> 
+<body> 
+    <div class="container">
+        <div class="row mt-5 mb-4">
+            <div class="col-12">
+                <form action="/search" method="POST" style="width:100%;">
+                    <div class="input-group my-auto">
+                        <input name="keyword" class="form-control w-100" placeholder="Search More..." style="border-radius: 500px 0 0 500px"/>
+                        <div class="input-group-append">
+                            
+                            <button type="submit" id="search" class="btn btn-outline-dark" style="border-radius: 0 500px 500px 0">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <h5> 
+                <span> "<%= keyword %>" </span> returned <span><%= numOfSearch %></span> results...
+            </h5>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12">
+                <% for(let s of searchResult){ %>
+                    <a href="/sports/<%=s._id%>" style="text-decoration:none; cursor:pointer">
+                         <div class="card my-3 py-3" style="background-color: #eee; box-shadow: 0 1px 2px #ccc; border:none; height: 7em">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h4 style="font-family: Arial; font-weight:bold ;color: black"> <%= s.title%> </h4>
+                                        <small style="color:grey"> Updated At: <%= new Date(s.updatedAt).toLocaleDateString("en-US") %> </small>
+                                    </div>
+                                    <div class="col-3" style="text-align:center; border-left: dashed 1px #ccc">
+                                        <img style= "height: 5em; width: 70%; border-radius: 10px"src="<%= s.image%>"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <%- include ('./partials/footer') %> 
+</body> 
+</html>

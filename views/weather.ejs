@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Weather App</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+</head> 
+
+<body>
+<%- include ('./partials/header') %> 
+    <div class="container">
+        <div>
+            <div class="row justify-content-center">
+                <h1 style="width:fit-content">
+                    Weather
+                </h1>
+            </div>
+            <h2>City:
+                <%=result.city.name%>
+            </h2>
+        </div>
+        <hr/>
+        
+        <div class="d-flex">
+            <%for(let i=0; i<result.list.length;i++){%>
+                <div class="flex-fill p-2">
+                <div class="card">
+                    <img class="card-img-top" src='https://openweathermap.org/img/w/<%=result.list[i].weather[0].icon%>.png' alt="weather" />
+                    
+                    
+                        <div class="card-body" style="padding-top: 0 !important">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <span class="topTemp" style="width:fit-content"><%=result.list[i].temp.day%>°C</span>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-2" style="text-align:right">
+                                        <i class="fas fa-temperature-high" style="font-size:x-large; color:#e8694d" ></i>
+                                    </div>
+                                    <div class="col" style="text-align:center">
+                                        <h6 style="color:#e8694d; border-left:dashed 1px white"><%=result.list[i].temp.max%>°C</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2" style="text-align:right">
+                                        <i class="fas fa-temperature-low" style="font-size:x-large; color:#4575e6 "></i>
+                                    </div>
+                                    <div class="col" style="text-align:center; ">
+                                        <h6 style="color:#4575e6; border-left:dashed 1px white"><%=result.list[i].temp.min%>°C</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            
+                            <h4 class="card-title">
+                                <%=result.list[i].weather[0].weather%>
+                            </h4>
+                            <p class="card-text">
+                                <span class="day">
+                                    <%=Date(result.list[i].dt)%>
+                                </span>
+                            </p>
+                            <hr/>
+                            <div class="row justify-content-center">
+                                <span>
+                                    Humidity: <%=result.list[i].humidity%>%
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+        </div>
+
+    </div>
+
+
+
+
+<div class="chatbox-div-index">
+    <%- include ('./partials/chatbox') %> 
+</div>
+
+<%- include ('./partials/footer') %> 
+</body> 
+</html>
