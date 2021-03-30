@@ -99,7 +99,52 @@ app.use('/admin', adminRoutes);
 app.use('/news', newsRoutes);
 
 
+// Weather API
 
+const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
+
+app.get('/weather', (req, res) => {
+    var dataPromise = getWeather();
+    dataPromise.then(JSON.parse)
+        .then(function(result) {
+            res.render('weather', { result, title: '***Weather App***' })
+        })
+})
+
+function getWeather(url) {
+    // Setting URL and headers for request
+    var options = {
+        url: weatherUrl,
+        headers: {
+            'User-Agent': 'request'
+        }
+    };
+    // Return new promise 
+    return new Promise(function(resolve, reject) {
+        // Do async job
+        request.get(options, function(err, resp, body) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(body);
+            }
+        })
+    })
+}
+
+
+
+app.get('/weatherwithoutpromise', (req, res) => {
+    request(url, (err, response, body) => {
+        if (err) {
+            console.log(err);
+        } else {
+
+            const output = JSON.parse(body);
+            res.send(output);
+        }
+    });
+});
 
 
 app.get('/chatbox', (request, response) => {
@@ -155,19 +200,9 @@ io.sockets.on('connection',(socket)=>{
 })
 
 
-// Weather API
 
-const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
-
-app.get('/weather', (req, res) => {
-    var dataPromise = getWeather();
-    dataPromise.then(JSON.parse)
-        .then(function(result) {
-            res.render('weather', { result, title: '***Weather App***' })
-        })
-})
 
 //start express app
-app.listen(port,()=>{
-    console.log("app started !!", port)
-})
+// app.listen(port,()=>{
+//     console.log("app started !!", port)
+// })
