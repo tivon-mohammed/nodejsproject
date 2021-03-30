@@ -22,6 +22,7 @@ let localstorage= new LocalStorage('./Scratch')
 const contactRoute = require('./contactUs');
 
 
+
 //constants declared
 const app=express()
 const port=8008
@@ -163,13 +164,9 @@ io.sockets.on('connection',(socket)=>{
     socket.on('nick',(nick)=>{
         console.log(nick)
         socket.nickname = nick
-        })
 
-        socket.on('chat',(data)=>{
-            
-            
-            //console.log(data)
-            publicIP.v4()
+        //fetching the location on name set
+        publicIP.v4()
                 .then(ip=>{
                     iplocate(ip)
                     .then((results)=>{
@@ -177,6 +174,12 @@ io.sockets.on('connection',(socket)=>{
                         localstorage.setItem('userLocal',city)
                     })
                 })
+        })
+
+        socket.on('chat',(data)=>{
+            
+            
+            //console.log(data)
     
             let nickname = socket.nickname?socket.nickname:'';
                 var time = new Date().toLocaleTimeString();
