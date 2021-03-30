@@ -53,17 +53,23 @@ router.route('/login').post(json(), urlencoded({extended:false}),cors(corsOption
             return res.status(500).send('Error on the server.');
         }
         const string = encodeURIComponent('! Please enter valid value');
+        //console.log("here" + userData)
         if (!userData) { 
             res.render('login.ejs', {error: 'Please enter correct credential',
                                 msg: req.query.msg?req.query.msg:''})
         } else{
             const passwordIsValid = bcrypt.compareSync(req.body.password, userData.password);
-            if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-            let localStorage = new LocalStorage('./Scratch');
-            let token = jwt.sign({id: userData.id}, config.secret, {expiresIn:86400})
-            //console.log("toekn, auth" + token)
-            localStorage.setItem('authToken', token)   
-            res.redirect('/admin/profile');
+            if (!passwordIsValid) {
+                //return res.status(401).send({ auth: false, token: null });
+                res.render('login.ejs', {error: 'Please enter correct credential',
+                                           msg: req.query.msg?req.query.msg:''})
+            } else {
+                let localStorage = new LocalStorage('./Scratch');
+                let token = jwt.sign({id: userData.id}, config.secret, {expiresIn:86400})
+                //console.log("toekn, auth" + token)
+                localStorage.setItem('authToken', token)   
+                res.redirect('/admin/profile');
+            }
         }
     });
 }); 
