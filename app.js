@@ -56,11 +56,15 @@ app.use(express.static(__dirname+'/public'));
 app.get('/', (request, response) => {
     
     
-    article.find({},(err,artciles)=>{
+    article.find({},(err,articles)=>{
+        let nonSportsArticles = articles.filter((a)=>(
+            a.topic !== "Sport"
+        ));
+        console.log(nonSportsArticles.length);
         getWeather().then(JSON.parse).then((weather)=>{
             article.find({"topic":"Sport"}).sort({createdAt:-1}).exec((err,sportsNews)=>{
                 response.render('index', {
-                    articles: artciles,
+                    articles: nonSportsArticles,
                     news:sportsNews,
                     weather: weather
                 })               
