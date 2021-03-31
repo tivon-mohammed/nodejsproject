@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="nav navbar-nav mx-auto">
       <li class="nav-item">
         <a class="nav-link" href="/">Home</a>
@@ -26,7 +26,114 @@
         <a class="nav-link" href="/login">Admin</a>
       </li>
     </ul>
-</nav>
+</nav>-->
+<style>
+  .navLinks{
+    transition: 0.3s !important;
+    text-decoration:none !important;
+    color:#777 !important;
+  }
 
+  .navLinks:hover{
+    color:#bf98d6 !important;
+    transition: 0.3s !important;
+    font-weight: bolder;
+  }
 
+  #loading{
+    display:flex; 
+    z-index:10001; 
+    position:fixed; 
+    top:0; 
+    left:0; 
+    height: 100%; 
+    width:100%; 
+    background-color:rgba(0,0,0,0.5); 
+    cursor:progress;
+    justify-content: center;
+    align-items: center;
+  }
 
+  #complete-loading{
+    display:flex; 
+    z-index:10001; 
+    position:fixed; 
+    top:0; 
+    left:0; 
+    height: 100%; 
+    width:100%; 
+    background-color:rgba(0,0,0,0.5); 
+    cursor:progress;
+    justify-content: center;
+    align-items: center;
+    -webkit-animation: fadeOut 0.3s ease-in ;
+    -moz-animation: fadeOut 0.3s ease-in ;
+    animation: fadeOut 0.3s ease-in ;
+  }
+
+  @-webkit-keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @-moz-keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+  }
+
+  @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+  }
+</style>
+
+<div style="background-color:#f8f9fa; height:70px; width:100%; position:fixed; top:0; left:0; z-index:10000; box-shadow: 0 2px 1px rgba(0,0,0,0.2)">
+  <div class="container h-100 my-auto">
+    <div class="row h-100 my-auto">
+      <% if(locals.home){ %>
+        <div class="col-12 my-auto">
+            <div class="links my-auto" style="text-align:center">
+                <a  class="mx-2 navLinks" href="/">Home</a>
+                <a  class="mx-2 navLinks" href="/sports">Sports</a>
+                <a  class="mx-2 navLinks" href="/contactus">Contact Us</a>
+                <a  class="mx-2 navLinks" href="/aboutus">About Us</a>
+                <a  class="mx-2 navLinks" href="/login">Admin</a>
+            </div>
+        </div>
+      <% }else{ %>
+        <div class="col-6 my-auto">
+            <div style="text-align:left; font-size: 40px; font-family: 'Bungee', cursive;">
+                24x7 <i class="fas fa-pen" style="font-size:x-large"></i>
+            </div>
+        </div>
+        <div class="col-6 my-auto">
+            <div class="links my-auto" style="text-align:right">
+                <a  class="mx-2 navLinks" href="/">Home</a>
+                <a  class="mx-2 navLinks" href="/sports">Sports</a>
+                <a  class="mx-2 navLinks" href="/contactus">Contact Us</a>
+                <a  class="mx-2 navLinks" href="/aboutus">About Us</a>
+                <a  class="mx-2 navLinks" href="/login">Admin</a>
+            </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<div style="height:70px; width:100%; position:relative; top:0; left:0"></div>
+<div id="loading">
+  <i class="fas fa-pen fa-spin mx-auto my-auto" style="position:absolute;font-size:120px; color:#bf98d6; text-shadow: 2px 2px 3px black"></i>
+</div>
+
+<script>
+  let ending = () => {
+    let loadingScreen = document.getElementById("loading");
+    loadingScreen.id = "complete-loading";
+    setTimeout(()=>{
+      document.getElementById("complete-loading").remove();
+    }, 300)
+  }
+
+  setTimeout(()=>{
+    ending();
+  }, 1200);
+</script>

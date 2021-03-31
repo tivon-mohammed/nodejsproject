@@ -23,15 +23,16 @@ router.use((req,res,next)=>{
     next();
 })
 
-router.get('/:keyword', cors(corsOption), (req,res)=>{
+router.get('/:keyword/:topic', cors(corsOption), (req,res)=>{
+    let topic = req.params["topic"];
     let keyword = req.params["keyword"];
-    Article.find({}, (err,data)=>{
+    Article.find({"topic":topic}, (err,data)=>{
         if(err){
             res.render('searchArticle', {
                 errorMsg:"Something went wrong. Please try again later."
             })
         }else{
-            if(keyword === ""){
+            if(keyword === "" || keyword == null || keyword === undefined){
                 res.render('searchArticle', {
                     errorMsg:"Please give us a search keyword."
                 })
@@ -42,17 +43,51 @@ router.get('/:keyword', cors(corsOption), (req,res)=>{
                 res.render('searchArticle',{
                     searchResult: searchResult,
                     numOfSearch: searchResult.length,
-                    keyword: keyword
+                    keyword: keyword,
+                    topic: topic
                 })
             }
         }
     })
 })
 
-router.post('/', cors(corsOption), (req,res)=>{
+router.get('/:keyword', cors(corsOption), (req,res)=>{
+    let keyword = req.params["keyword"];
+    Article.find({}, (err,data)=>{
+        if(err){
+            res.render('searchArticle', {
+                errorMsg:"Something went wrong. Please try again later."
+            })
+        }else{
+            if(keyword === "" || keyword == null || keyword === undefined){
+                res.render('searchArticle', {
+                    errorMsg:"Please give us a search keyword."
+                })
+            }else{
+                let searchResult = data.filter((article)=>{
+                    return article.title.toLowerCase().includes(keyword.toLowerCase());
+                })
+                res.render('searchArticle',{
+                    searchResult: searchResult,
+                    numOfSearch: searchResult.length,
+                    keyword: keyword,
+                    topic: null
+                })
+            }
+        }
+    })
+})
+
+router.post('/:topic?', cors(corsOption), (req,res)=>{
+    let topic = req.params["topic"];
     let keyword = req.body["keyword"];
     console.log(keyword);
-    res.redirect(`/search/${keyword}`);
+    if(topic){
+        res.redirect(`/search/${keyword}/${topic}`);
+    }else{
+        res.redirect(`/search/${keyword}`);
+    }
+    
 })
 
 module.exports = router;

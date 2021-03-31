@@ -3,8 +3,11 @@
   border-radius: 15px !important;
   background-color: #051258b0 !important;
   color: white;
+  transition: all 2s ease-in-out;
 }
-.card:hover { transform: scale(1.1); }
+.card:hover { 
+  transform: scale(1.1); 
+}
 .card-img-top{
   width:100%
 }

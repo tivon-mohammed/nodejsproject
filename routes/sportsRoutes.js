@@ -43,7 +43,7 @@ router.get('/', cors(corsOption), (req,res)=>{
     fetch("https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328")
     .then(response => response.json()).then(data => {
         let events = data.events;
-        Article.find({"topic" : "Sport"}, (err,data)=>{
+        Article.find({"topic":"Sport"}).sort({createdAt:-1}).exec((err,data)=>{
             res.render('sports', {
                 events: events,
                 news: data

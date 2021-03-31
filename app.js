@@ -54,7 +54,8 @@ app.set('views', './views');
 
 app.use(express.static(__dirname+'/public'));
 app.get('/', (request, response) => {
-    article.find({"topic":"Sport"},(err,sportsNews)=>{
+    
+    article.find({"topic":"Sport"}).sort({createdAt:-1}).exec((err,sportsNews)=>{
         getWeather().then(JSON.parse).then((weather)=>{
             response.render('index', {
                 news:sportsNews,

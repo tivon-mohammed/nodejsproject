@@ -43,7 +43,7 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" style="width:100%; height:400px; background-color: grey; border-radius:20px; box-shadow: 0 3px 5px rgba(0, 0, 0, 0.30)">
-            <div class="carousel-search" >
+            <div class="carousel-search" style="z-index:9999">
                 <div class="container my-auto h-100">
                     <div class="row justify-content-center my-auto h-100">
                         <div class="col-2"></div>
@@ -52,7 +52,7 @@
                                 <div class="row justify-content-center mb-3">
                                     <h4 style="font-weight: bold; color:white; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3)">Search Sports!</h4>
                                 </div>
-                                <form action="/search" method="POST">
+                                <form action="/search/Sport" method="POST">
                                     <div class="input-group my-auto">
                                         <input name="keyword" class="form-control w-100" placeholder="Search More..." style="border-radius: 500px 0 0 500px"/>
                                         <div class="input-group-append">

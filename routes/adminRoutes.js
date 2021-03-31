@@ -39,7 +39,8 @@ router.get('/profile', function (req, res) {
                 res.redirect('/login')
             }
             localStorage.setItem('currentuser', user.email);
-            res.render('admin.ejs',{user})
+            // res.render('admin.ejs',{user})
+            res.redirect('/news/show');
         });
     });
 });
