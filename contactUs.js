@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
+
+// specifying schema of the database
 const formSchema = new mongoose.Schema(
     {
         data: Object,

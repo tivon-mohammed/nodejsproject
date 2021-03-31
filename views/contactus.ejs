@@ -1,17 +1,35 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-<%- include ('./partials/header') %> 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/header') %> 
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center mt-5">
-            <h3>Contact Us</h3>
+
+    
+    <!-- <div class="container"> -->
+
+
+        <header class="masthead">
+            <div class="container h-100">
+              <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                  <h1 class="font-weight-light">Contact us</h1>
+                  <!-- <p class="lead">24/7</p> -->
+                </div>
+              </div>
+            </div>
+          </header>
+
+    
+        <div>
+
         </div>
         <div class="row mt-5">
 
-            <div class=" col-md-12 px-4 py-4 mx-auto">
+            <div class=" col-md-6 px-4 py-4 mx-auto">
                 <form action="/post" method="post">
                     <label for="team_name">Enter name: </label>
                     <input class="form-control" id="team_name" type="text" name="name_field"
@@ -38,5 +56,6 @@
 
 
 
-<%- include ('./partials/footer') %> 
+<%- include ('./partials/footer') %>
+
 </html>
