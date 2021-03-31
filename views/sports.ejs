@@ -29,6 +29,7 @@
 </style>
 <body> 
     <div class="container mt-5">
+            
             <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -113,13 +114,14 @@
             <div class="card-body" style="height:400px; overflow-y:auto; overflow-x:hidden;">
                 <div class="my-3">
                     <div class="card-columns">
-                        <% for(let e of events){ %>
+                        <% for(let e of epl){ %>
                             <div class="card " style="border-radius: 15px 15px 15px 15px; box-shadow: 0 1px 2px #ccc; border:none">
                             <img class="card-img-top" style="border-radius: 15px 15px 0 0 " src="<%= e.strThumb %>" alt="Card image cap">
                                 <div class="card-body" style="border-radius: 0 0  15px 15px">
                                     <div class="row mt-2 mb-2">
                                         <div class="col-2 mx-auto" style="text-align:right; font-size: x-large">
                                             <i class="fas fa-home mx-auto"></i>
+                                            <img src="<%=eplTeams.get(e.idHomeTeam)%>" style="width:25px">
                                         </div>
                                         <div class="col-4 my-auto" style="text-align:center; border-right: dashed 1px #ccc">
                                             <h5 class="my-auto" style="color:#681899"><%= e.intHomeScore ? e.intHomeScore : "-"%></h5>
@@ -128,7 +130,8 @@
                                             <h5 class="my-auto" style="color:#681899"><%= e.intAwayScore ? e.intAwayScore : "-"%></h5>
                                         </div>
                                         <div class="col-2 mx-auto" style="text-align:left; font-size: x-large">
-                                            <i class="far fa-futbol mx-auto"></i>
+                                            <i class="fas fa-running mx-auto"></i>
+                                            <img src="<%=eplTeams.get(e.idAwayTeam)%>" style="width:25px">
                                         </div>
                                     </div>
                                     <div class="row justify-content-center">
