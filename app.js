@@ -24,8 +24,8 @@ const contactRoute = require('./contactUs');
 
 
 //constants declared
-const app = express()
-const port = 8080
+const app = express();
+const port = 8008;
 //mongoose connection 
 mongoose.connect('mongodb://127.0.0.1:27017/edureka',{useUnifiedTopology:true,useNewUrlParser:true})
 const connection=mongoose.connection;
@@ -55,7 +55,6 @@ app.set('views', './views');
 
 app.use(express.static(__dirname+'/public'));
 app.get('/', (request, response) => {
-<<<<<<< HEAD
     
     
     article.find({},(err,articles)=>{
@@ -71,13 +70,6 @@ app.get('/', (request, response) => {
                     weather: weather,
                     location: userLocation
                 })               
-=======
-    article.find({ "topic": "Sport" }, (err, sportsNews) => {
-        getWeather().then(JSON.parse).then((weather) => {
-            response.render('index', {
-                news: sportsNews,
-                weather: weather
->>>>>>> c255fd8f23daf67446ff256d52f9c2f41670370e
             })
         })
     }).sort({createdAt : -1}).limit(3)
@@ -94,9 +86,6 @@ app.use('/sports', sportsRoutes);
 import commentRoutes from './routes/commentRoutes';
 app.use('/comments', commentRoutes);
 
-app.get('/contactus', (request, response) => {
-    response.render('contactus')
-})
 app.get('/aboutus', (request, response) => {
     response.render('aboutus')
 })
@@ -119,7 +108,7 @@ app.get('/register', (request, response) => {
 app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/news', newsRoutes);
-
+app.use('/contactus', contactRoute);
 
 // Weather API
 
@@ -191,27 +180,12 @@ app.get('/weatherwithoutpromise', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-=======
-
-app.get('/chatbox', (request, response) => {
-    response.render('chatbox.ejs')
-})
-//Allen code
-//index.html file
-//server for chat
-let server = http.createServer(app).listen(port, () => {
-    console.log("chat is up on: ", port)
-})
-
->>>>>>> c255fd8f23daf67446ff256d52f9c2f41670370e
 let io = socketIO(server)
 io.sockets.on('connection', (socket) => {
     //console.log("connected")
     socket.on('nick', (nick) => {
         console.log(nick)
         socket.nickname = nick
-<<<<<<< HEAD
 
         //fetching the location on name set
         publicIP.v4()
@@ -241,35 +215,6 @@ io.sockets.on('connection', (socket) => {
                 nick:nickname,
                 location:localstorage.getItem('userLocal'),
                 time:time
-=======
-    })
-
-    socket.on('chat', (data) => {
-
-
-        //console.log(data)
-        publicIP.v4()
-            .then(ip => {
-                iplocate(ip)
-                    .then((results) => {
-                        let city = JSON.stringify(results.city, null, 2)
-                        localstorage.setItem('userLocal', city)
-                    })
-            })
-
-        let nickname = socket.nickname ? socket.nickname : '';
-        var time = new Date().toLocaleTimeString();
-        if (nickname) {
-            let list = socket.client.conn.server.clients
-            let users = Object.keys(list)
-            socket.emit('userList', users)
-
-            let payload = {
-                message: data.message,
-                nick: nickname,
-                location: localstorage.getItem('userLocal'),
-                time: time
->>>>>>> c255fd8f23daf67446ff256d52f9c2f41670370e
             }
             if (data.message) {
                 socket.emit('chat', payload)

@@ -24,13 +24,21 @@ const formData = (bodyData) => {
     })
 }
 
-router.get('/contactus', (req, res) => {
-    res.render('contactus');
+
+router.get('/:success?', (req, res) => {
+    let success = req.params['success'];
+    console.log(success);
+    if(success === undefined){
+        res.render('contactus', {msg:null});
+    }else{
+        res.render('contactus', {msg:"We've received your feedback! Thank you."});
+    }
+    
 })
 
 router.post('/post', function (req, res) {
     console.log(req.body);
-    res.send("recieved your request!");
+    res.redirect('/contactus/success');
 
     formData(req.body);
 });

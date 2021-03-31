@@ -12,16 +12,16 @@
     <!-- <div class="container"> -->
 
 
-        <header class="masthead">
+        <header class="masthead" style="height: 30vh;min-height: 80px;background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');background-size: cover;background-position: center;background-repeat: no-repeat;">
             <div class="container h-100">
               <div class="row h-100 align-items-center">
                 <div class="col-12 text-center">
-                  <h1 class="font-weight-light">Contact us</h1>
+                  <h1 class="font-weight-bold">Contact us</h1>
                   <!-- <p class="lead">24/7</p> -->
                 </div>
               </div>
             </div>
-          </header>
+        </header>
 
     
         <div>
@@ -30,7 +30,7 @@
         <div class="row mt-5">
 
             <div class=" col-md-6 px-4 py-4 mx-auto">
-                <form action="/post" method="post">
+                <form action="/contactus/post" method="post">
                     <label for="team_name">Enter name: </label>
                     <input class="form-control" id="team_name" type="text" name="name_field"
                         placeholder="What is your name?">
@@ -42,7 +42,11 @@
                     <textarea class="form-control" id="team_address" type="text" name="address_field"
                         placeholder="What do you want to ask?" style="height:200px"></textarea>
 
-                    
+                    <% if(msg != null){ %>
+                    <div class="row justify-content-center mt-5">
+                        <h5 style="color:#e3626f"> <%=msg%> </h5>
+                    </div>
+                    <% } %>
 
                     <button class=" btn btn-primary btn-block mt-5" type="submit" style="border-radius:500px">Submit</button>
                 </form>
