@@ -1,0 +1,123 @@
+<div class="container my-5 px-5">
+    <div class="row mt-3">
+        <div class="col-12" id="commentDiv">
+            <% for(let c of comments){ %>
+                <div class="card my-3" style="border-radius:15px">
+                    <div class="card-body p-3">
+                        <div class="container h-100">
+                            <div class="row h-100">
+                                <div class="col-2 h-100" style="border-right: dashed 1px #ccc">
+                                    <%= c.name %>
+                                </div>
+                                <div class="col-8 h-100">
+                                    <%= c.comment %>
+                                </div>
+                                <div class="col-2 h-100" style="border-left: dashed 1px #ccc">
+                                    <small > 
+                                        <h6 style="color:#91d474; font-weight:bold"> <i class="fas fa-laugh-beam" style="font-size:20px" onclick="like(<%=c._id%>)"></i><span id="like">  <%= c.like %> </span></h6>
+                                        <h6 style="color:#db5a65; font-weight:bold"> <i class="fas fa-angry" style="font-size:20px" onclick="dislike(<%=c._id%>)" ></i><span id="dislike"> <%= c.dislike %> </span></h6>
+                                        <%= new Date(c.createdAt).toLocaleDateString("en-US") %>
+                                    </small>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="form-group mt-3">
+                <input id="name" class="form-control" type="text" placeholder="What is your name?" style="border-radius:15px" required/>
+            </div>
+            <div class="form-group mt-3">
+                <textarea id="comment" class="form-control" type="text" placeholder="Add Comment" style="border-radius:15px; height:100px" required></textarea>
+            </div>
+            <div class="form-group mt=5">
+                <button id="commentButton" class="btn btn-block btn-outline-info" style="border-radius:500px" onclick="postComment()">
+                    Reply
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    console.log("<%= articleId %>");
+    let like = (id) => {
+        console.log(id);
+        $.ajax({
+            url: '/comments/' + id + '/like',
+            type: 'PUT',
+            cache: false,
+            success: (data)=> {
+                $('#like').html(data.like)
+            }
+        })
+    }
+
+    let dislike = (id) => {
+        console.log(id);
+        $.ajax({
+            url: '/comments/' + id + '/dislike',
+            type: 'PUT',
+            cache: false,
+            success: (data)=> {
+                $('#dislike').html(data.dislike)
+            }
+        })
+    }
+
+    let postComment = () => {
+        if($("#name").val() === "" || $("#comment").val() ===""){
+            alert("Sorry, You can't post comment with empty input.");
+        }else{
+            let comment = {
+            "name": $("#name").val(),
+            "comment": $("#comment").val(),
+            "article": "<%=articleId%>"
+            }
+            $.ajax({
+                url: '/comments',
+                type: 'POST',
+                cache: false,
+                data: comment,
+                success: (data)=>{
+                    $("#commentDiv").append(
+                        '<div class="card my-3" style="border-radius:15px">' +
+                            '<div class="card-body p-3">' +
+                                '<div class="container h-100">' +
+                                    '<div class="row h-100">' +
+                                        '<div class="col-2 h-100" style="border-right: dashed 1px #ccc">'+
+                                            data.name +
+                                        '</div>' +
+                                        '<div class="col-8 h-100">' +
+                                            data.comment +
+                                        '</div>' +
+                                        '<div class="col-2 h-100" style="border-left: dashed 1px #ccc">' +
+                                            '<small >' +
+                                                '<h6 style="color:#91d474; font-weight:bold"> <i class="fas fa-laugh-beam" style="font-size:20px"></i>'+ data.like +'</h6>' +
+                                                '<h6 style="color:#db5a65; font-weight:bold"> <i class="fas fa-angry" style="font-size:20px;" ></i>'+ data.dislike +'</h6>' +
+                                                new Date(data.createdAt).toLocaleDateString("en-US") +
+                                            '</small>'  +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>'
+                    );
+                    $("#name").val('');
+                    $("#comment").val('');
+                },
+                error: (error)=>{
+                    alert("failed to post comment!")
+                }
+            })
+        }
+    }
+</script>

@@ -31,30 +31,28 @@
                 <div class="flex-fill p-2">
                 <div class="card">
                     <img class="card-img-top" src='https://openweathermap.org/img/w/<%=result.list[i].weather[0].icon%>.png' alt="weather" />
-                    
-                    
-                        <div class="card-body" style="padding-top: 0 !important">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <span class="topTemp" style="width:fit-content"><%=result.list[i].temp.day%>°C</span>
+                    <div class="card-body" style="padding-top: 0 !important">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <span class="topTemp" style="width:fit-content"><%=result.list[i].temp.day%>°C</span>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-2" style="text-align:right">
+                                    <i class="fas fa-temperature-high" style="font-size:x-large; color:#e8694d" ></i>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-2" style="text-align:right">
-                                        <i class="fas fa-temperature-high" style="font-size:x-large; color:#e8694d" ></i>
-                                    </div>
-                                    <div class="col" style="text-align:center">
-                                        <h6 style="color:#e8694d; border-left:dashed 1px white"><%=result.list[i].temp.max%>°C</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-2" style="text-align:right">
-                                        <i class="fas fa-temperature-low" style="font-size:x-large; color:#4575e6 "></i>
-                                    </div>
-                                    <div class="col" style="text-align:center; ">
-                                        <h6 style="color:#4575e6; border-left:dashed 1px white"><%=result.list[i].temp.min%>°C</h6>
-                                    </div>
+                                <div class="col" style="text-align:center">
+                                    <h6 style="color:#e8694d; border-left:dashed 1px white"><%=result.list[i].temp.max%>°C</h6>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-2" style="text-align:right">
+                                    <i class="fas fa-temperature-low" style="font-size:x-large; color:#4575e6 "></i>
+                                </div>
+                                <div class="col" style="text-align:center; ">
+                                    <h6 style="color:#4575e6; border-left:dashed 1px white"><%=result.list[i].temp.min%>°C</h6>
+                                </div>
+                            </div>
+                        </div>
                             
                             
                             
@@ -64,7 +62,7 @@
                             </h4>
                             <p class="card-text">
                                 <span class="day">
-                                    <%=Date(result.list[i].dt)%>
+                                    <%= new Date(result.list[i].dt * 1000).toLocaleDateString('en-US') %>
                                 </span>
                             </p>
                             <hr/>
@@ -77,12 +75,14 @@
                         </div>
                     </div>
                 </div>
-                <%}%>
+            <%}%>
         </div>
 
     </div>
 
-
+<script>
+    console.log(new Date(16172172000).toLocaleDateString('en-US'))
+</script>
 
 
 <div class="chatbox-div-index">

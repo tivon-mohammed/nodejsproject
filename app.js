@@ -82,6 +82,9 @@ app.use('/sports', sportsRoutes);
 // app.get('/sports', (request, response) => {
 //     response.render('sports.ejs')
 // })
+import commentRoutes from './routes/commentRoutes';
+app.use('/comments', commentRoutes);
+
 app.get('/contactus', (request, response) => {
     response.render('contactus')
 })
@@ -111,14 +114,37 @@ app.use('/news', newsRoutes);
 
 // Weather API
 
-const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
+var weatherUrl;
+var userLocation;
+
+
+app.get('/chatbox', (request, response) => {
+    response.render('chatbox.ejs')
+})
+//Allen code
+//index.html file
+//server for chat
+let server = http.createServer(app).listen(port,()=>{
+    publicIP.v4()
+    .then(ip=>{
+        iplocate(ip)
+        .then((results)=>{
+            console.log("chat is up on: ", port);
+            userLocation = results.city;
+            weatherUrl =`http://api.openweathermap.org/data/2.5/forecast/daily?q=${userLocation}&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29`;
+            console.log(userLocation);
+            console.log(weatherUrl);
+        })
+    })
+})
+    
 
 app.get('/weather', (req, res) => {
     var dataPromise = getWeather();
     dataPromise.then(JSON.parse)
-        .then(function(result) {
-            res.render('weather', { result, title: '***Weather App***' })
-        })
+    .then(function(result) {
+        res.render('weather', { result, title: '***Weather App***' })
+    })
 })
 
 function getWeather(url) {
@@ -155,17 +181,6 @@ app.get('/weatherwithoutpromise', (req, res) => {
         }
     });
 });
-
-
-app.get('/chatbox', (request, response) => {
-    response.render('chatbox.ejs')
-})
-//Allen code
-//index.html file
-//server for chat
-let server = http.createServer(app).listen(port,()=>{
-    console.log("chat is up on: ", port)
-})
 
 let io = socketIO(server)
 io.sockets.on('connection',(socket)=>{

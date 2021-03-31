@@ -126,7 +126,7 @@ h5{
     margin-left: 4%;
 }
 .chatbox-div-index{
-    position: absolute;
+    position: fixed;
     right: 0; 
     bottom: 0;
     

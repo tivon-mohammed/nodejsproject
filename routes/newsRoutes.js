@@ -93,17 +93,17 @@ router.route('/show').get((request, response) => {
     let localStorage = new LocalStorage('./Scratch')
     let token = localStorage.getItem('authToken')
     if(!token){
-        return response.redirect('/');
+        return response.redirect('/login');
     }
     jwt.verify(token, config.secret, (err, decoded)=>{
         if(err){
-            response.redirect('/');
+            response.redirect('/login');
         }
         //console.log(decoded)
         let email = localStorage.getItem('currentuser');
         Article.find({writer : email}, { password: 0 }, function (err, data) {
             if (err) {
-                response.redirect('/')
+                response.redirect('/login')
             }       
             response.render('show',{data})
         });

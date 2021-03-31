@@ -12,7 +12,9 @@
   </head>
   <body>
       <div class="container">
-        <h2>Add news</h2>
+        <div class="row justify-content-center my-5">
+          <h2>Add news</h2>
+        </div>
         <form name="form1" action="/news/newsadd" method="POST">
           <div class="form-group">
             <label for="title">Title:</label>
@@ -20,7 +22,7 @@
           </div>
           <div class="form-group">
             <label for="content">Content:</label>
-            <textarea type="text" class="form-control" id="content" placeholder="Enter content" name="content" placeholder='Auto-Expanding Textarea'> </textarea>
+            <textarea type="text"  style="height:300px" class="form-control" id="content" placeholder="Enter content" name="content" placeholder='Auto-Expanding Textarea'> </textarea>
           </div>
           <div class="form-group">
             <label for="image">Image URL:</label>
@@ -34,8 +36,10 @@
           </select>
           <br>
           <br>
-          <button type="submit" class="btn btn-primary">Add</button>
-          <a href="/" class="btn btn-success" role="button">cancel</a>
+          <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary mr-3">Add</button>
+            <a href="/news/show" class="btn btn-success" role="button">Cancel</a>
+          </div>
         </form>
 
         <% if(message!=null){ %>    

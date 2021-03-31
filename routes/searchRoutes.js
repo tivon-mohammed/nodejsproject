@@ -32,9 +32,12 @@ router.get('/:keyword/:topic', cors(corsOption), (req,res)=>{
                 errorMsg:"Something went wrong. Please try again later."
             })
         }else{
-            if(keyword === "" || keyword == null || keyword === undefined){
+            if(keyword === "empty_search"){
                 res.render('searchArticle', {
-                    errorMsg:"Please give us a search keyword."
+                    searchResult: [],
+                    numOfSearch: 0,
+                    keyword: "",
+                    topic: topic
                 })
             }else{
                 let searchResult = data.filter((article)=>{
@@ -59,9 +62,12 @@ router.get('/:keyword', cors(corsOption), (req,res)=>{
                 errorMsg:"Something went wrong. Please try again later."
             })
         }else{
-            if(keyword === "" || keyword == null || keyword === undefined){
+            if(keyword === "empty_search"){
                 res.render('searchArticle', {
-                    errorMsg:"Please give us a search keyword."
+                    searchResult: [],
+                    numOfSearch: 0,
+                    keyword: "",
+                    topic: null
                 })
             }else{
                 let searchResult = data.filter((article)=>{
@@ -81,6 +87,9 @@ router.get('/:keyword', cors(corsOption), (req,res)=>{
 router.post('/:topic?', cors(corsOption), (req,res)=>{
     let topic = req.params["topic"];
     let keyword = req.body["keyword"];
+    if(keyword === "" || keyword == null || keyword === undefined){
+        keyword = "empty_search"
+    }
     console.log(keyword);
     if(topic){
         res.redirect(`/search/${keyword}/${topic}`);

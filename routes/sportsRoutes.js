@@ -1,7 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import Article from '../db/model/Article.model' 
-
+import Article from '../db/model/Article.model'; 
+import comment from '../db/model/comment.model';
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -27,13 +27,16 @@ router.use((req,res,next)=>{
 router.get('/:id', cors(corsOption), (req,res)=>{
     let ArticleId = req.params["id"];
     console.log("searched ID",ArticleId);
-    Article.findOne({"_id": ArticleId}, (err, data)=>{
-        console.log(data);
+    Article.findOne({"_id": ArticleId}, (err, article)=>{
         if(err){
             throw err;
         }else{
-            res.render('sportsNews', {
-                Article: data
+            comment.find({article:ArticleId},(err,comments)=>{
+                res.render('sportsNews', {
+                    Article: article,
+                    comments: comments,
+                    
+                })
             })
         }
     })

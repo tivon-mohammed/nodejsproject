@@ -13,7 +13,10 @@
   
   <body>
       <div class="container">
-        <h2>Update news</h2>
+        <div class="row justify-content-center my-5">
+          <h2>Update news</h2>
+        </div>
+        
         <form name="form1" method="POST">
           <% for(var i=0; i < article.length; i++) { %>
           <div class="form-group">
@@ -22,15 +25,17 @@
           </div>
           <div class="form-group">
             <label for="content">Content:</label>
-            <textarea type="text" class="form-control" id="content" placeholder="Enter content" name="content" placeholder='Auto-Expanding Textarea'><%= article[i].content %> </textarea>
+            <textarea type="text" style="height:300px" class="form-control" id="content" placeholder="Enter content" name="content" placeholder='Auto-Expanding Textarea'><%= article[i].content %> </textarea>
           </div>
           <div class="form-group">
             <label for="image">Image URL:</label>
             <input type="text" class="form-control" id="image" value="<%= article[i].image %>" placeholder="Enter image url" name="image">
           </div>
           <br>
-          <button type="submit" class="btn btn-primary">Update</button>
-          <a href="/" class="btn btn-success" role="button">cancel</a>
+          <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary mr-3">Update</button>
+            <a href="/news/show" class="btn btn-success" role="button">Cancel</a>
+          </div>
           <% } %>
         </form>
       </div>
