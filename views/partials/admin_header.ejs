@@ -120,4 +120,11 @@
   setTimeout(()=>{
     ending();
   }, 1200);
+
+  window.addEventListener("beforeunload", (event)=>{
+    var load = document.createElement('div');
+    load.id = 'loading';
+    load.innerHTML = '<i class="fas fa-pen fa-spin mx-auto my-auto" style="position:absolute;font-size:120px; color:#bf98d6; text-shadow: 2px 2px 3px black"></i>';
+    document.body.appendChild(load);
+  },false);
 </script>
