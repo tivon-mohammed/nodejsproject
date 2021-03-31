@@ -1,0 +1,46 @@
+<li class="list-group-item scoreInfo" id="<%=idName%>" style="overflow-x: auto; overflow-y:hidden; white-space:nowrap; height:2px; padding:0;"> 
+    <% for(let t of teams){ %>
+        <div class="card mx-3" style="width:20em; border-radius: 15px 15px 15px 15px; box-shadow: 0 2px 3px rgba(0,0,0,0.2); display:inline-block">
+                <div class="card-body" style="border-radius: 0 0  15px 15px">
+                    <div class="row mt-2 mb-2">
+                        <div class="col-2" style="text-align:right; font-size: x-large">
+                            <img src="<%=teamsInfo.get(t.idHomeTeam)%>" style="width:25px">
+                        </div>
+                        <div class="col-4 my-auto" style="text-align:center; border-right: dashed 1px #ccc">
+                            <h5 class="my-auto" style="color:#681899"><%= t.intHomeScore ? t.intHomeScore : "-"%></h5>
+                        </div>
+                        <div class="col-4 my-auto" style="text-align:center">
+                            <h5 class="my-auto" style="color:#681899"><%= t.intAwayScore ? t.intAwayScore : "-"%></h5>
+                        </div>
+                        <div class="col-2" style="text-align:left; font-size: x-large">
+                            <img src="<%=teamsInfo.get(t.idAwayTeam)%>" style="width:25px">
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="card-body">
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-4" style="text-align:right">
+                            <span style="font-weight:bolder; color:#681899"> H : </span>
+                        </div>
+                        <div class="col-8" style="text-align:left; padding-left:0">
+                            <span style="font-weight:bolder; color:#555"> <%= t.strHomeTeam%> </span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mb-3">
+                        <div class="col-4" style="text-align:right">
+                            <span style="font-weight:bolder; color:#681899"> A : </span>
+                        </div>
+                        <div class="col-8" style="text-align:left; padding-left:0">
+                            <span style="font-weight:bolder; color:#555"> <%= t.strAwayTeam%> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" style="border-radius: 0 0 15px 15px">
+                    <div class="row justify-content-center">
+                        <p class="card-text"><small class="text-muted"> Posted on <%= t.dateEvent%></small></p>
+                    </div>
+                </div>
+            </div>
+    <% } %> 
+</li>

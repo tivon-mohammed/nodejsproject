@@ -26,6 +26,25 @@
     font-size: 70px;
     color: white;
     }
+
+    .button-color-fill{
+        position:absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left:0;
+        background: linear-gradient(308deg, rgba(129,183,245,1) 0%, rgba(204,233,255,1) 100%);
+        z-index:1;
+        opacity: 0;
+        transition: opacity 0.15s ease-in-out;
+    }
+
+    .leagueButtons:hover .button-color-fill{
+        opacity:0.5;
+        cursor:pointer;
+    }
+    
+
 </style>
 <body> 
     <div class="container mt-5">
@@ -36,7 +55,7 @@
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
-                <div class="carousel-inner" style="width:100%; height:400px; background-color: grey; border-radius:15px 15px 0 0">
+                <div class="carousel-inner" style="width:100%; height:400px; background-color: grey; border-radius:15px 15px 15px 15px">
                     <div class="carousel-item active">
                         <div class="w-100 row" style="position:absolute;">
                             <div class="col-3"></div>
@@ -104,56 +123,40 @@
             </div>
     </div>
    
-   <div class = "container">
-        <div class="card text-center mb-5" style="border-radius: 0 0 15px 15px; box-shadow: 0 1px 2px #ccc ; border:none;">
+   <div class = "container mt-5">
+        <div class="card text-center mb-5" style="border-radius: 15px 15px 15px 15px; box-shadow: 0 1px 2px #ccc ; border:none;">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" style="font-weight:bold; color:white; background: linear-gradient(90deg, rgba(115,0,124,1) 0%, rgba(2,0,36,1) 100%); border-radius: 0 0 0 0 "> 
+                <li class="list-group-item" style="font-weight:bold; color:white; background: linear-gradient(90deg, rgba(115,0,124,1) 0%, rgba(2,0,36,1) 100%); border-radius: 15px 15px 0 0 "> 
                     <h4 style="font-weight:bold">Game Results</h4> 
                 </li>
+                <li id="eplButton" class="list-group-item leagueButtons" style=" font-weight:bold; color:white; background: linear-gradient(308deg, rgba(200,129,245,1) 0%, rgba(240,204,255,1) 100%); border-bottom:solid 1px #ddd"> 
+                    <div class="button-color-fill"></div>
+                    <img src="https://www.thesportsdb.com/images/media/league/badge/pdd43f1610891709.png/preview" style="height:50px; z-index:2">
+                </li>
+                <%- include ('./partials/sportScores', {teams:epl, teamsInfo:eplTeams, idName: "eplList"}) %> 
+                <li id="nflButton" class="list-group-item leagueButtons" style=" font-weight:bold; color:white; background: linear-gradient(308deg, rgba(200,129,245,1) 0%, rgba(240,204,255,1) 100%); border-bottom:solid 1px #ddd"> 
+                    <div class="button-color-fill"></div>
+                    <img src="https://www.thesportsdb.com/images/media/league/badge/trppxv1421413032.png/preview" style="height:50px">
+                </li>
+                <%- include ('./partials/sportScores', {teams:nfl, teamsInfo:nflTeams, idName: "nflList"}) %> 
+                <li id="nbaButton" class="list-group-item leagueButtons" style=" font-weight:bold; color:white; background: linear-gradient(308deg, rgba(200,129,245,1) 0%, rgba(240,204,255,1) 100%); border-bottom:solid 1px #ddd"> 
+                    <div class="button-color-fill"></div>
+                    <img src="https://www.thesportsdb.com/images/media/league/logo/ypuryw1421971236.png/preview" style="height:50px">
+                </li>
+                <%- include ('./partials/sportScores', {teams:nba, teamsInfo:nbaTeams, idName: "nbaList"}) %> 
+                <li id="mlbButton" class="list-group-item leagueButtons" style=" font-weight:bold; color:white; background: linear-gradient(308deg, rgba(200,129,245,1) 0%, rgba(240,204,255,1) 100%); border-bottom:solid 1px #ddd"> 
+                    <div class="button-color-fill"></div>
+                    <img src="https://www.thesportsdb.com/images/media/league/badge/c5r83j1521893739.png/preview" style="height:50px">
+                </li>
+                <%- include ('./partials/sportScores', {teams:mlb, teamsInfo:mlbTeams, idName: "mlbList"}) %> 
+                <li id="nhlButton" class="list-group-item leagueButtons" style=" font-weight:bold; color:white; background: linear-gradient(308deg, rgba(200,129,245,1) 0%, rgba(240,204,255,1) 100%); border-bottom:solid 1px #ddd"> 
+                    <div class="button-color-fill"></div>
+                    <img src="https://www.thesportsdb.com/images/media/league/badge/vxwtqq1421413200.png/preview" style="height:50px">
+                </li>
+                <%- include ('./partials/sportScores', {teams:nhl, teamsInfo:nhlTeams, idName: "nhlList"}) %> 
             </ul>
-            <div class="card-body" style="height:400px; overflow-y:auto; overflow-x:hidden;">
-                <div class="my-3">
-                    <div class="card-columns">
-                        <% for(let e of epl){ %>
-                            <div class="card " style="border-radius: 15px 15px 15px 15px; box-shadow: 0 1px 2px #ccc; border:none">
-                            <img class="card-img-top" style="border-radius: 15px 15px 0 0 " src="<%= e.strThumb %>" alt="Card image cap">
-                                <div class="card-body" style="border-radius: 0 0  15px 15px">
-                                    <div class="row mt-2 mb-2">
-                                        <div class="col-2 mx-auto" style="text-align:right; font-size: x-large">
-                                            <i class="fas fa-home mx-auto"></i>
-                                            <img src="<%=eplTeams.get(e.idHomeTeam)%>" style="width:25px">
-                                        </div>
-                                        <div class="col-4 my-auto" style="text-align:center; border-right: dashed 1px #ccc">
-                                            <h5 class="my-auto" style="color:#681899"><%= e.intHomeScore ? e.intHomeScore : "-"%></h5>
-                                        </div>
-                                        <div class="col-4 my-auto" style="text-align:center">
-                                            <h5 class="my-auto" style="color:#681899"><%= e.intAwayScore ? e.intAwayScore : "-"%></h5>
-                                        </div>
-                                        <div class="col-2 mx-auto" style="text-align:left; font-size: x-large">
-                                            <i class="fas fa-running mx-auto"></i>
-                                            <img src="<%=eplTeams.get(e.idAwayTeam)%>" style="width:25px">
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <div class="row justify-content-center mt-3">
-                                                <h6 class="card-title"><%= e.strEvent%></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer" style="border-radius: 0 0 15px 15px">
-                                    <div class="row justify-content-center">
-                                        <p class="card-text"><small class="text-muted"> Posted on <%= e.dateEvent%></small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        <% } %>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer text-muted" style="background-color: white; border-radius: 0 0 15px 15px">
-                Updates Every Day.
+            <div class="card-footer text-muted" style="background: linear-gradient(308deg, rgba(200,129,245,1) 0%, rgba(240,204,255,1) 100%); border-radius: 0 0 15px 15px; border-top:0">
+                <small><span style="color:white; font-weight:bold">Last 15 Game Results for Each Popular Leagues.</span></small>
             </div>
         </div>
         
@@ -215,6 +218,29 @@
         $("#searchGoogle").on('click',()=>{
             window.location = "https://news.google.com/search?q=sports%2C%20" + $("#searchInput").val();
         })
+
+        let toggleTeams = (button, list) => {
+            $(button).on('click',()=>{
+                if($(list).css('height') !== '2px' && $(list).css('padding') !== '0px'){
+                    $(list).css('height','2px');
+                    $(list).css('padding','0px');
+                    console.log($(list).css('height'));
+                    console.log($(list).css('padding'));
+                }else{
+                    $(list).css('height','fit-content');
+                    $(list).css('padding','0.75rem 1.25rem');
+                }
+            })
+        }
+
+        toggleTeams('#eplButton','#eplList');
+        toggleTeams('#nflButton','#nflList');
+        toggleTeams('#nbaButton','#nbaList');
+        toggleTeams('#mlbButton','#mlbList');
+        toggleTeams('#nhlButton','#nhlList');
+
+        
+
    </script>
 </body> 
 <%- include ('./partials/footer') %> 
