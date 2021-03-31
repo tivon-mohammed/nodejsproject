@@ -67,7 +67,8 @@ app.get('/', (request, response) => {
                 response.render('index', {
                     articles: nonSportsArticles,
                     news:sportsNews,
-                    weather: weather
+                    weather: weather,
+                    location: userLocation
                 })               
             })
         })
