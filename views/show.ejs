@@ -20,7 +20,15 @@
       window.location.href='show/update/'+id
     }
     function deleteNews(id){
-      window.location.href='show/delete/'+id
+      
+      if (confirm('Are you sure you want to delete the Article')) {
+        window.location.href='show/delete/'+id
+      } else {
+        // Do nothing!
+        console.log('Not confirmed');
+      }
+      
+
     }
     </script>
 </head>

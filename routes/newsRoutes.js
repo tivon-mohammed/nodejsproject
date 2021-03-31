@@ -116,7 +116,7 @@ router.get("/show/delete/:_id",(req,res)=>{
     //console.log(id)
     Article.deleteOne({_id:id},(err)=>{
         if(!err)
-        res.send("Article is deleted")
+        res.redirect('/news/show')
     })
 })
 
@@ -141,7 +141,8 @@ router.post("/show/update/:_id",(req,res)=>{
     //console.log(title)
     Article.updateOne({_id:id},{title:updatedtitle,content:updatedcontent,image:updatedimage},(err)=>{ 
         if(!err)
-        res.send("updated")
+        res.redirect('/news/show')
+        //res.send("updated")
     })
 })
 
