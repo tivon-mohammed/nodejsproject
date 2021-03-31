@@ -4,6 +4,14 @@
 <%- include ('./partials/header') %> 
 </head> 
 <body> 
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12" style="text-align:center; font-size: 50px; font-family: 'Bungee', cursive;">
+                News 24x7 <i class="fas fa-pen" style="font-size:xx-large"></i>
+            </div>
+        </div>
+    </div>
+    <hr/>
     <%- include ('./partials/sports_partial', {news:news}) %>
     <hr/>
     <%- include ('./partials/weather_partial', {result:weather}) %>

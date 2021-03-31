@@ -57,7 +57,7 @@ router.route('/newsadd').post(json(), urlencoded({extended:false}),cors(corsOpti
             response.redirect('/');
         }
         let email = localStorage.getItem('currentuser');
-        console.log("email",email);
+
         Article.create({
             title : articleQuery.title,
             content : articleQuery.content,
@@ -100,10 +100,8 @@ router.route('/show').get((request, response) => {
             response.redirect('/');
         }
         //console.log(decoded)
-        let currentuser = localStorage.getItem('currentuser');
-        console.log("email:",currentuser);
-
-        Article.find({writer : currentuser}, { password: 0 }, function (err, data) {
+        let email = localStorage.getItem('currentuser');
+        Article.find({writer : email}, { password: 0 }, function (err, data) {
             if (err) {
                 response.redirect('/')
             }       
