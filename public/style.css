@@ -129,16 +129,10 @@ h5{
 }
 .chatbox-div-index{
     position: fixed;
-<<<<<<< HEAD
-    right: 10px; 
-    bottom: 2px;
-    
-=======
     right: 0; 
     bottom: 0;
     margin-right: 40px;
     margin-bottom: 20px;
->>>>>>> 6747e588fbaaf187379393d5a0ff4d2f1d75d0d0
 }
 
 
@@ -170,17 +164,6 @@ h5{
 .chatPop{
     margin-right: 5px;
     visibility: hidden;
-<<<<<<< HEAD
-    background: transparent;
-    color: white;
-	border-radius: .4em;
-    cursor: pointer;
-    right: 0;
-    bottom: 0;
-    position: relative;
-}
-
-=======
     background: #f8f9fa;
     color: rgb(12, 12, 12);
 	border-radius: 45px;
@@ -190,18 +173,17 @@ h5{
     font-weight: bold;
     border-style: solid;
     border-color: rgb(3, 3, 3);
-    animation: blinker 3s linear infinite;
+    animation: blinker 1.5s linear infinite;
 }
 
 @keyframes blinker {
     50% {
       opacity: 0.7;
-      font-size: 50px;
+      font-size: 30px;
       background-color:black;
       color: white;
     }
   }
   
->>>>>>> 6747e588fbaaf187379393d5a0ff4d2f1d75d0d0
 
 
