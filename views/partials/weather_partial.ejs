@@ -37,7 +37,7 @@
 </style>
 <div class="container my-5">
     <div class="card">
-        <div class="card-header" style="border-radius:15px">
+        <div class="card-header" style="border-radius:15px 15px 0 0">
             <div class="row justify-content-center">
                 <h4 style="font-weight:bold"><%= location %></h4>
             </div>
@@ -73,7 +73,7 @@
                                 <h4 class="card-title">
                                     <%=result.list[i].weather[0].weather%>
                                 </h4>
-                                <p class="card-text">
+                                <p class="card-text" style="text-align:center">
                                     <span class="day">
                                         <%=new Date(result.list[i].dt * 1000).toLocaleDateString('en-US')%>
                                     </span>

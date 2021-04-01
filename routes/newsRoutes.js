@@ -7,6 +7,7 @@ import {LocalStorage} from 'node-localstorage'
 import Article from '../db/model/Article.model' 
 import TOPIC from '../db/model/topic.enum' 
 import user from '../db/model/user.model' 
+import comment from '../db/model/comment.model';
 
 //defining constants 
 const router = Router(); 
@@ -161,9 +162,13 @@ router.get("/show/:_id",(req,res)=>{
                 } else {
                     article[0].writer = user[0].name
                     //console.log(article[0])
-                    res.render('articles', {
-                        Article: article[0]
+                    comment.find({article:id},(err,comments)=>{
+                        res.render('articles', {
+                            Article: article[0],
+                            comments: comments
+                        })
                     })
+                    
                 }
             })
         }   

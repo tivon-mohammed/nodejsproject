@@ -51,7 +51,8 @@
 }
 .chat-container textarea{
     width: 100%;
-    min-height: 450px;
+    min-height: 350px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -127,8 +128,8 @@ h5{
 }
 .chatbox-div-index{
     position: fixed;
-    right: 0; 
-    bottom: 0;
+    right: 10px; 
+    bottom: 2px;
     
 }
 
@@ -143,7 +144,7 @@ h5{
 }
 
 #minbtn{
-    color: red;
+    color: rgb(221, 122, 122);
 }
 
 #minbtn:hover{
@@ -151,7 +152,7 @@ h5{
     cursor: pointer; 
 }
 #maxbtn{
-    color: green;
+    color: rgb(154, 212, 154);
 }
 #maxbtn:hover{
     background-color: grey;
@@ -160,10 +161,13 @@ h5{
 
 .chatPop{
     visibility: hidden;
-    background: #0c0c0c;
+    background: transparent;
     color: white;
 	border-radius: .4em;
     cursor: pointer;
+    right: 0;
+    bottom: 0;
+    position: relative;
 }
 
 

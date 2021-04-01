@@ -14,13 +14,18 @@
                                 </div>
                                 <div class="col-2 h-100" style="border-left: dashed 1px #ccc">
                                     <small > 
-                                        <h6 style="color:#91d474; font-weight:bold"> <i class="fas fa-laugh-beam" style="font-size:20px" onclick="like(<%=c._id%>)"></i><span id="like">  <%= c.like %> </span></h6>
-                                        <h6 style="color:#db5a65; font-weight:bold"> <i class="fas fa-angry" style="font-size:20px" onclick="dislike(<%=c._id%>)" ></i><span id="dislike"> <%= c.dislike %> </span></h6>
+                                        <h6 style="color:#91d474; font-weight:bold"> 
+                                            <i class="fas fa-laugh-beam" style="font-size:20px" onclick="like('<%=c._id%>')" ></i>
+                                            <span id="like<%=c._id%>">  <%= c.like %> </span>
+                                        </h6>
+                                        <h6 style="color:#db5a65; font-weight:bold"> 
+                                            <i class="fas fa-angry" style="font-size:20px" onclick="dislike('<%=c._id%>')" ></i>
+                                            <span id="dislike<%=c._id%>"> <%= c.dislike %> </span>
+                                        </h6>
                                         <%= new Date(c.createdAt).toLocaleDateString("en-US") %>
                                     </small>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -56,7 +61,8 @@
             type: 'PUT',
             cache: false,
             success: (data)=> {
-                $('#like').html(data.like)
+                console.log(data);
+                $('#like'+id).html(" "+ data.like)
             }
         })
     }
@@ -68,7 +74,7 @@
             type: 'PUT',
             cache: false,
             success: (data)=> {
-                $('#dislike').html(data.dislike)
+                $('#dislike'+id).html(" " + data.dislike)
             }
         })
     }
@@ -101,8 +107,14 @@
                                         '</div>' +
                                         '<div class="col-2 h-100" style="border-left: dashed 1px #ccc">' +
                                             '<small >' +
-                                                '<h6 style="color:#91d474; font-weight:bold"> <i class="fas fa-laugh-beam" style="font-size:20px"></i>'+ data.like +'</h6>' +
-                                                '<h6 style="color:#db5a65; font-weight:bold"> <i class="fas fa-angry" style="font-size:20px;" ></i>'+ data.dislike +'</h6>' +
+                                                '<h6 style="color:#91d474; font-weight:bold">' + 
+                                                    '<i class="fas fa-laugh-beam" style="font-size:20px" onclick="like('+ "'" + data._id + "'" +')"></i>'+ 
+                                                    '<span id="like' + data._id + '"> ' +  data.like + '</span>' +
+                                                '</h6>' +
+                                                '<h6 style="color:#db5a65; font-weight:bold">' + 
+                                                    '<i class="fas fa-angry" style="font-size:20px;" onclick="dislike('+ "'" + data._id + "'" +')" ></i>'+ 
+                                                    '<span id="dislike' + data._id + '"> ' +  data.dislike + '</span>' +
+                                                '</h6>' +
                                                 new Date(data.createdAt).toLocaleDateString("en-US") +
                                             '</small>'  +
                                         '</div>' +

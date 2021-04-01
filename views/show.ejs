@@ -80,11 +80,20 @@
               <button type="button" class="btn btn-sm" onclick="deleteNews('<%= data[i]._id %>')" style="width:50px">
                 <i class="fas fa-trash-alt" style="font-size:30px; color: #e36b46"></i>
               </button>
-              <a>
+              <% if(data[i].topic === "Sport"){ %>
+                <a href="/sports/<%= data[i]._id%>">
                   <button type="button" class="btn btn-sm" style="width:50px" >
                     <i class="far fa-eye" style="font-size:27px; color: #74bdd4"></i>
                   </button>
-              </a>
+                </a>
+              <% }else{ %>
+                <a href="/news/show/<%= data[i]._id%>">
+                  <button type="button" class="btn btn-sm" style="width:50px" >
+                    <i class="far fa-eye" style="font-size:27px; color: #74bdd4"></i>
+                  </button>
+                </a>
+              <% } %>
+              
             </td>
           </tr>
           <% } %>

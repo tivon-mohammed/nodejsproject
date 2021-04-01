@@ -28,6 +28,12 @@
         </div>
         <div class="row mb-5">
             <div class="col-12">
+                <% if(numOfSearch == 0){ %>
+                    <div class="container py-5 my-5 text-center">
+                        <i class="far fa-meh mb-5" style="font-size:350px; color:#aaa"></i>
+                    </div>
+                    
+                <% } %>
                 <% for(let s of searchResult){ %>
                     <a href="/sports/<%=s._id%>" style="text-decoration:none; cursor:pointer">
                          <div class="card my-3 py-3" style="background-color: #eee; box-shadow: 0 1px 2px #ccc; border:none; height: 7em">

@@ -101,9 +101,10 @@
         <div class="row">
             <% for(let i of news) { %>
                 <div class="col-sm-4">
-                    <div class="card" style="width:350px; height:500px;">
+                    <div class="card pb-3" style="width:350px; height:fit-content; border-radius:15px">
+                    <img class="card-img-top" src="<%= i.image %>"alt="Card image cap" width="300" height="200" style="border-radius:15px 15px 0 0">
                       <div class="card-body">
-                        <img class="card-img-top" src="<%= i.image %>"alt="Card image cap" width="300" height="300">
+                        
                         <h5 class="card-title" style="height:90px; overflow: hidden"><%= i.title%></h5>
                         <a href="/news/show/<%= i._id%>" style="text-decoration:none">
                           <button class="btn btn-block" style="box-shadow: 2px 2px 3px black; background: linear-gradient(90deg, rgba(255,64,114,1) 0%, rgba(201,16,77,1) 100%); color:white; font-weight:bold; border-radius:500px">

@@ -31,7 +31,9 @@ router.put('/:commentId/:likeOrDislike', (req,res)=>{
                 }
             },
             (err,updatedData)=>{
-                res.send(updatedData);
+                comment.findOne({"_id":commentId},(err,data)=>{
+                    res.send(data);
+                })               
             }
         )
     })

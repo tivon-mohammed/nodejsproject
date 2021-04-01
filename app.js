@@ -55,8 +55,6 @@ app.set('views', './views');
 
 app.use(express.static(__dirname+'/public'));
 app.get('/', (request, response) => {
-    
-    
     article.find({},(err,articles)=>{
         let nonSportsArticles = articles.filter((a)=>(
             a.topic !== "Sport"
@@ -64,12 +62,15 @@ app.get('/', (request, response) => {
         console.log(nonSportsArticles.length);
         getWeather().then(JSON.parse).then((weather)=>{
             article.find({"topic":"Sport"}).sort({createdAt:-1}).exec((err,sportsNews)=>{
-                response.render('index', {
-                    articles: nonSportsArticles,
-                    news:sportsNews,
-                    weather: weather,
-                    location: userLocation
-                })               
+                getStockPrice().then((resolve)=>{
+                    response.render('index', {
+                        articles: nonSportsArticles,
+                        news:sportsNews,
+                        weather: weather,
+                        location: userLocation,
+                        stock: resolve
+                    })  
+                })             
             })
         })
     }).sort({createdAt : -1}).limit(3)
@@ -166,6 +167,33 @@ function getWeather(url) {
     })
 }
 
+import fetch from 'node-fetch';
+
+var getStockPrice = () =>  (new Promise((resolve)=>{
+    let stockQuote = new Map();
+    fetch('https://finnhub.io/api/v1/quote?symbol=QQQ&token=c1ik6nn48v6vit212vng')
+    .then(response => response.json()).then(body => {
+        console.log(body);
+        stockQuote.set("QQQ",body);
+        return fetch('https://finnhub.io/api/v1/quote?symbol=TSLA&token=c1ik6nn48v6vit212vng');
+    })
+    .then(response => response.json()).then(body => {
+        console.log(body);
+        stockQuote.set("TSLA",body);
+        return fetch('https://finnhub.io/api/v1/quote?symbol=DIS&token=c1ik6nn48v6vit212vng');
+    })
+    .then(response => response.json()).then(body => {
+        console.log(body);
+        stockQuote.set("DIS",body);
+        return fetch('https://finnhub.io/api/v1/quote?symbol=IVV&token=c1ik6nn48v6vit212vng');
+    })
+    .then(response => response.json()).then(body => {
+        console.log(body);
+        stockQuote.set("IVV",body);
+        console.log(stockQuote);
+        resolve(stockQuote);
+    })
+}))
 
 
 app.get('/weatherwithoutpromise', (req, res) => {

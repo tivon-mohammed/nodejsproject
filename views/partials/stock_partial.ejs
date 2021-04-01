@@ -1,0 +1,158 @@
+<div class="container my-5 w-100" >
+    <div class="card w-100" style="background: linear-gradient(63deg, rgba(99,99,99,1) 0%, rgba(19,19,19,1) 100%);">
+        <div class="card-header">
+            <div class="row justify-content-center">
+                <h4 style="font-weight:bold; color:#8de397 !important">Stocks</h4>
+            </div>
+        </div>
+        <div class= "card-body">
+            <div class="container">
+                <div class="row my-3">
+                    <div class="col-3">
+                        <div class="card" style="background-color: #eee !important">
+                            <div class="card-header text-center" style="border-radius: 15px 15px 0 0">
+                                <h5 style="color:#777; font-weight:bold; margin:0">QQQ</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <h4 style="color:#777">$<%= stock.get('QQQ').c%></h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <% let qqqdiff = stock.get('QQQ').c - stock.get('QQQ').o %> 
+                                    <% let qqqperc= qqqdiff/stock.get('QQQ').o *100 %> 
+                                    <% if(qqqdiff > 0){ %>
+                                        <small style="color:#2da15d">
+                                            <%= "+$"+qqqdiff.toFixed(2)+" (+" + qqqperc.toFixed(2) +"%)" %>
+                                            <i class="fas fa-caret-up" style="font-size:large"></i>                                
+                                        </small>
+                                    <% }else{ %>
+                                        <small style="color:#cf604e">
+                                            <%= "-$"+(0-qqqdiff.toFixed(2))+ " (" + qqqperc.toFixed(2) + "%)" %>                            
+                                            <i class="fas fa-caret-down" style="font-size:large"></i>
+                                        </small>
+                                    <% } %>
+                                </div>
+                                <div class="row mt-3" style="border-top: dashed 1px #ccc; border-bottom: dashed 1px #ccc;">
+                                    <div class="col-6 text-center my-auto py-3" style="border-right: dashed 1px #ccc">
+                                        <h6 class="my-auto" style="color:#777;">Low: $<%=stock.get('QQQ').l %></h6>
+                                    </div>
+                                    <div class="col-6 text-center my-auto py-3">
+                                        <h6 class="my-auto" style="color:#777;">High: $<%=stock.get('QQQ').h %></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="card" style="background-color: #eee !important">
+                            <div class="card-header text-center" style="border-radius: 15px 15px 0 0">
+                                <h5 style="color:#777; font-weight:bold; margin:0">TSLA</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <h4 style="color:#777">$<%= stock.get('TSLA').c%></h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <% let tsladiff = stock.get('TSLA').c - stock.get('TSLA').o %> 
+                                    <% let tslaperc= tsladiff/stock.get('TSLA').o *100 %> 
+                                    <% if(tsladiff > 0){ %>
+                                        <small style="color:#2da15d">
+                                            <%= "+$"+tsladiff.toFixed(2)+" (+" + tslaperc.toFixed(2) +"%)" %>
+                                            <i class="fas fa-caret-up" style="font-size:large"></i>                                
+                                        </small>
+                                    <% }else{ %>
+                                        <small style="color:#cf604e">
+                                            <%= "-$"+(0-tsladiff.toFixed(2))+ " (" + tslaperc.toFixed(2) + "%)" %>                            
+                                            <i class="fas fa-caret-down" style="font-size:large"></i>
+                                        </small>
+                                    <% } %>
+                                </div>
+                                <div class="row mt-3" style="border-top: dashed 1px #ccc; border-bottom: dashed 1px #ccc;">
+                                    <div class="col-6 text-center my-auto py-3" style="border-right: dashed 1px #ccc">
+                                        <h6 class="my-auto" style="color:#777;">Low: $<%=stock.get('TSLA').l %></h6>
+                                    </div>
+                                    <div class="col-6 text-center my-auto py-3">
+                                        <h6 class="my-auto" style="color:#777;">High: $<%=stock.get('TSLA').h %></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="card" style="background-color: #eee !important">
+                            <div class="card-header text-center" style="border-radius: 15px 15px 0 0">
+                                <h5 style="color:#777; font-weight:bold; margin:0">DIS</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <h4 style="color:#777">$<%= stock.get('DIS').c%></h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <% let disdiff = stock.get('DIS').c - stock.get('DIS').o %> 
+                                    <% let disperc= disdiff/stock.get('DIS').o *100 %> 
+                                    <% if(disdiff > 0){ %>
+                                        <small style="color:#2da15d">
+                                            <%= "+$"+disdiff.toFixed(2)+" (+" + disperc.toFixed(2) +"%)" %>
+                                            <i class="fas fa-caret-up" style="font-size:large"></i>                                
+                                        </small>
+                                    <% }else{ %>
+                                        <small style="color:#cf604e">
+                                            <%= "-$"+(0-disdiff.toFixed(2))+ " (" + disperc.toFixed(2) + "%)" %>                            
+                                            <i class="fas fa-caret-down" style="font-size:large"></i>
+                                        </small>
+                                    <% } %>
+                                </div>
+                                <div class="row mt-3" style="border-top: dashed 1px #ccc; border-bottom: dashed 1px #ccc;">
+                                    <div class="col-6 text-center my-auto py-3" style="border-right: dashed 1px #ccc">
+                                        <h6 class="my-auto" style="color:#777;">Low: $<%=stock.get('DIS').l %></h6>
+                                    </div>
+                                    <div class="col-6 text-center my-auto py-3">
+                                        <h6 class="my-auto" style="color:#777;">High: $<%=stock.get('DIS').h %></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="card" style="background-color: #eee !important">
+                            <div class="card-header text-center" style="border-radius: 15px 15px 0 0">
+                                <h5 style="color:#777; font-weight:bold; margin:0">IVV</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <h4 style="color:#777">$<%= stock.get('IVV').c%></h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <% let ivvdiff = stock.get('IVV').c - stock.get('IVV').o %> 
+                                    <% let ivvperc= ivvdiff/stock.get('IVV').o *100 %> 
+                                    <% if(ivvdiff > 0){ %>
+                                        <small style="color:#2da15d">
+                                            <%= "+$"+ivvdiff.toFixed(2)+" (+" + ivvperc.toFixed(2) +"%)" %>
+                                            <i class="fas fa-caret-up" style="font-size:large"></i>                                
+                                        </small>
+                                    <% }else{ %>
+                                        <small style="color:#cf604e">
+                                            <%= "-$"+(0-ivvdiff.toFixed(2))+ " (" + ivvperc.toFixed(2) + "%)" %>                            
+                                            <i class="fas fa-caret-down" style="font-size:large"></i>
+                                        </small>
+                                    <% } %>
+                                </div>
+                                <div class="row mt-3" style="border-top: dashed 1px #ccc; border-bottom: dashed 1px #ccc;">
+                                    <div class="col-6 text-center my-auto py-3" style="border-right: dashed 1px #ccc">
+                                        <h6 class="my-auto" style="color:#777;">Low: $<%=stock.get('IVV').l %></h6>
+                                    </div>
+                                    <div class="col-6 text-center my-auto py-3">
+                                        <h6 class="my-auto" style="color:#777;">High: $<%=stock.get('IVV').h %></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
