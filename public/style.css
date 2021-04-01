@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 .chat-container{
@@ -12,8 +13,8 @@
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
-    background-color: rgb(49, 56, 56);
-    color: rgb(241, 242, 248);
+    background-color:#f8f9fa;
+    color: rgb(0, 0, 0);
     margin-right: 5px;
     margin-bottom: 5px;
     font-family: 'Poppins', sans-serif;
@@ -128,9 +129,16 @@ h5{
 }
 .chatbox-div-index{
     position: fixed;
+<<<<<<< HEAD
     right: 10px; 
     bottom: 2px;
     
+=======
+    right: 0; 
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 20px;
+>>>>>>> 6747e588fbaaf187379393d5a0ff4d2f1d75d0d0
 }
 
 
@@ -160,7 +168,9 @@ h5{
 }
 
 .chatPop{
+    margin-right: 5px;
     visibility: hidden;
+<<<<<<< HEAD
     background: transparent;
     color: white;
 	border-radius: .4em;
@@ -170,5 +180,28 @@ h5{
     position: relative;
 }
 
+=======
+    background: #f8f9fa;
+    color: rgb(12, 12, 12);
+	border-radius: 45px;
+    cursor: pointer;
+    padding:30%;
+    font-size: 25px;
+    font-weight: bold;
+    border-style: solid;
+    border-color: rgb(3, 3, 3);
+    animation: blinker 3s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 0.7;
+      font-size: 50px;
+      background-color:black;
+      color: white;
+    }
+  }
+  
+>>>>>>> 6747e588fbaaf187379393d5a0ff4d2f1d75d0d0
 
 
